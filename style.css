@@ -1,0 +1,169 @@
+.header {
+    background-color: #D40B0B;
+    width: 100vw;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 60px;
+}
+
+.menu {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    background-color: #999AAD;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuOption {
+    display: flex;
+    border: solid black .5px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50vw;
+    font-size: 40px;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #D9D9D9;
+    width: 100vw;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    flex-direction: row;
+}
+
+.createOptions {
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-items: center;
+    min-width: 20em;
+    min-height: 5em;
+    max-width: 20em;
+    max-height: 5em;
+    background-color: #999AAD;
+    margin: 60px;
+    padding: 0;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 40em;
+    height: 5em;
+}
+
+.labelPg1 {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.option {
+    font-size: 20px;
+}
+
+.pageLink {
+    text-decoration: none;
+    color: black;
+}
+
+.pageLink:hover {
+    text-decoration: underline;
+    color: cyan;
+}
+
+.nextBack {
+    width: 100vw;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #999AAD;
+}
+
+.back, .next {
+    display: flex;
+    border: solid black .5px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50vw;
+    font-size: 40px;
+}
+
+.nextBackLink {
+    text-decoration: none;
+    color: black;
+}
+
+.nextBackLink:hover {
+    text-decoration: underline;
+    color: cyan;
+}
+
+.skill {
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-items: center;
+    min-width: 20em;
+    min-height: 5em;
+    max-width: 20em;
+    max-height: 5em;
+    background-color: #999AAD;
+    margin: 60px;
+    padding: 0; 
+}
+
+.label {
+    font-size: 20px;
+}
+
+.spellLevel {
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-items: center;
+    min-width: 40em;
+    min-height: 20em;
+    max-width: 40em;
+    max-height: 20em;
+    background-color: #999AAD;
+    margin: 60px;
+    padding: 0;
+}
+
+.loadCharacter {
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 5em;
+    background-color: #999AAD;
+    margin: 0;
+    padding: 0;
+    border: solid black .5px;
+}
+
+body {
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: fantasy;
+    background-color: #D9D9D9;
+}
