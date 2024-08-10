@@ -8,6 +8,8 @@
     padding: 0;
     margin: 0;
     font-size: 60px;
+    border: solid black .5px;
+    border-bottom: .25px;
 }
 
 .menu {
@@ -27,6 +29,7 @@
     height: 100%;
     width: 50vw;
     font-size: 40px;
+    border-bottom: .25px;
 }
 
 .wrapper {
@@ -54,6 +57,7 @@
     background-color: #999AAD;
     margin: 60px;
     padding: 0;
+    border: solid black .5px;
 }
 
 .name {
@@ -124,7 +128,8 @@
     max-height: 5em;
     background-color: #999AAD;
     margin: 60px;
-    padding: 0; 
+    padding: 0;
+    border: solid black .5px; 
 }
 
 .label {
@@ -143,6 +148,7 @@
     background-color: #999AAD;
     margin: 60px;
     padding: 0;
+    border: solid black .5px;
 }
 
 .loadCharacter {
