@@ -20,7 +20,7 @@ async function featLoader() {
     let data = await resp.json();
     let arr = [];
     arr.push(...data.results);
-    while (data.next){
+    while (data.next) {
         resp = await fetch(data.next);
         data = await resp.json();
         arr.push(...data.results);
