@@ -2,9 +2,7 @@ let search;
 let allFeats;
 let allFeatsArray = [];
 let selectedFeats;
-
-import data from './data'
-console.log(data); 
+ 
 addEventListener("DOMContentLoaded", () => {
   load();
 });
@@ -30,15 +28,21 @@ async function load() {
     //desc.classList.add('hidden');
     li.appendChild(descElem);
     descElem.remove();
-    li.addEventListener("click", () => {
-      if (li.classList.contains("active")) {
-        li.appendChild(descElem);
-        li.classList.add('active'); 
-      } else {
-        li.classList.remove('active'); 
-        descElem.remove();
+    // Add an event listener to the list item
+li.addEventListener("click", () => {
+    // Check if the list item has the 'active' class
+    if (li.classList.contains("active")) {
+      // If it has 'active', remove 'active' class and remove 'descElem'
+      li.classList.remove('active'); 
+      if (li.contains(descElem)) {
+        li.removeChild(descElem); // Remove descElem if it's a child of li
       }
-    });
+    } else {
+      // If it doesn't have 'active', add 'active' class and append 'descElem'
+      li.classList.add('active'); 
+      li.appendChild(descElem); // Append descElem only if it’s not already a child
+    }
+  });
   }
   console.log(allFeatsArray);
   search.addEventListener("keyup", () => {

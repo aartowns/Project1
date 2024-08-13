@@ -153,15 +153,11 @@
 
 .loadCharacter {
     display: flex;
-    flex: wrap;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     width: 100%;
-    height: 5em;
+    height: 35px;
     background-color: #999AAD;
     margin: 0;
-    padding: 0;
     border: solid black .5px;
 }
 
@@ -195,7 +191,6 @@
 }
   
 #nav ul {
-    justify-content: center;
     padding: 0;
     left: 0;
     display: none;
@@ -207,10 +202,42 @@
   
 #nav li:hover ul {
     display: block;
+    position: relative;
 }
   
 #nav li li:hover ul {
     display: block;
+}
+
+#nav li a:hover {
+    color: cyan;
+}
+
+.container {
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.characterSheet {
+    display: flex;
+    height: 95%;
+    width: 95%;
+    background-color: white;
+    border: solid black 2px;
+    border-radius: 10px;
+}
+
+#resultList li:hover {
+    color:#D40B0B;
+    text-decoration-line: underline;
+}
+
+#resultList li:hover p {
+    text-decoration-line: none;
+    color: black;
+    display: inline-block;
 }
 
 body {
