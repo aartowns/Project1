@@ -266,6 +266,37 @@
     padding: 5px 0;
 }
 
+.selectedSpells {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 91.5%;
+    min-height: 20em;
+    max-width: 91.5%;
+    max-height: 20em;
+    background-color: #999AAD;
+    margin: 60px; 
+    padding: 0;
+    border: solid black .5px;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
+
+.selectedSpells ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.selectedSpells h1 {
+    margin: 0; 
+    padding: 10px 0; 
+    text-align: center; 
+    width: 100%; 
+}
+
 body {
     width: 100vw;
     height: 100%;

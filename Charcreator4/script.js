@@ -1,88 +1,76 @@
-let search;
-let allFeats;
-let allFeatsArray = [];
-let selectedFeats;
- 
-addEventListener("DOMContentLoaded", () => {
-  load();
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const search = document.getElementById("featSearch");
+  const allFeats = document.getElementById("resultList");
+  const selectedFeats = document.getElementById("selected");
+  let featsArray = [];
 
-async function load() {
+  async function loadFeats() {
+      try {
+          let resp = await fetch("https://api.open5e.com/v2/feats/");
+          let data = await resp.json();
+          let feats = [...data.results];
 
-  search = document.getElementById("featSearch");
-  allFeats = document.getElementById("resultList");
-  selectedFeats = document.getElementById("selected");
-  
-  console.log(allFeats);
-  let feats = await featLoader();
-  for (let feat of feats) {
-    let li = document.createElement("li");
-    const obj = { elem: li, active: false, obj: feat };
-    allFeatsArray.push(obj);
-    li.id = feat.name;
-    li.classList.add("featContainer");
-    li.innerText = feat.name;
-    allFeats.appendChild(li);
-    let descElem = document.createElement("p");
-    descElem.innerText = feat.desc;
-    //desc.classList.add('hidden');
-    li.appendChild(descElem);
-    descElem.remove();
-    // Add an event listener to the list item
-li.addEventListener("click", () => {
-    // Check if the list item has the 'active' class
-    if (li.classList.contains("active")) {
-      // If it has 'active', remove 'active' class and remove 'descElem'
-      li.classList.remove('active'); 
-      if (li.contains(descElem)) {
-        li.removeChild(descElem); // Remove descElem if it's a child of li
+          while (data.next) {
+              resp = await fetch(data.next);
+              data = await resp.json();
+              feats.push(...data.results);
+          }
+
+          featsArray = feats;
+
+          feats.forEach(feat => {
+              const li = document.createElement("li");
+              const checkbox = document.createElement("input");
+              const descElem = document.createElement("p");
+
+              checkbox.type = "checkbox";
+              checkbox.classList.add("feat-checkbox");
+              checkbox.addEventListener("change", () => {
+                  if (checkbox.checked) {
+                      allFeats.removeChild(li);
+                      selectedFeats.appendChild(li);
+                  } else {
+                      selectedFeats.removeChild(li);
+                      allFeats.appendChild(li);
+                  }
+              });
+
+              descElem.textContent = feat.desc;
+              descElem.classList.add("hidden");
+
+              li.id = feat.name;
+              li.textContent = feat.name;
+              li.prepend(checkbox);
+              li.appendChild(descElem);
+
+              li.addEventListener("click", (event) => {
+                  if (event.target !== checkbox) {
+                      descElem.classList.toggle("hidden");
+                  }
+              });
+
+              allFeats.appendChild(li);
+          });
+      } catch (error) {
+          console.error('Error loading feats:', error);
       }
-    } else {
-      // If it doesn't have 'active', add 'active' class and append 'descElem'
-      li.classList.add('active'); 
-      li.appendChild(descElem); // Append descElem only if it’s not already a child
-    }
-  });
   }
-  console.log(allFeatsArray);
-  search.addEventListener("keyup", () => {
-    filterFeats(search.value);
-  });
-  search.addEventListener("search", () => {
-    filterFeats(search.value);
-  });
-}
 
-async function featLoader() {
-  let resp = await fetch("https://api.open5e.com/v2/feats/");
-  let data = await resp.json();
-  console.log(data);
-  let arr = [];
-  arr.push(...data.results);
-  while (data.next) {
-    resp = await fetch(data.next);
-    data = await resp.json();
-    arr.push(...data.results);
+  function filterFeats(searchText) {
+      const lowerCaseText = searchText.toLowerCase();
+      featsArray.forEach(feat => {
+          const li = document.getElementById(feat.name);
+          if (feat.name.toLowerCase().includes(lowerCaseText) || feat.desc.toLowerCase().includes(lowerCaseText)) {
+              li.classList.remove("hidden");
+          } else {
+              li.classList.add("hidden");
+          }
+      });
   }
-  return arr;
-}
 
-async function filterFeats(searchText) {
-  console.log(searchText);
-  if (!searchText) {
-    allFeatsArray.forEach((feat) => {
-      feat.elem.classList.remove("hidden");
-    });
-  }
-  allFeatsArray.forEach((feat) => {
-    if (
-      feat.obj.desc.toLowerCase().includes(searchText.toLowerCase()) ||
-      feat.obj.name.toLowerCase().includes(searchText.toLowerCase())
-    ) {
-      allFeats.appendChild(feat.elem);
-      //we want it
-    } else {
-      feat.elem.remove();
-    }
+  search.addEventListener("input", () => {
+      filterFeats(search.value);
   });
-}
+
+  loadFeats();
+});

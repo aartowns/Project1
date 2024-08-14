@@ -35,7 +35,7 @@ async function getSpells() {
                     description: spell.desc,
                     distance: spell.range || 'N/A', 
                     materials: spell.material || 'N/A', 
-                    school: spell.school.name || 'N/A', 
+                    school: spell.school?.name || 'N/A', 
                     level: spell.level || 0 
                 });
             }
@@ -82,7 +82,6 @@ async function getSpells() {
 
         console.log('Spells by level:', spellsByLevel);
 
-        // spells organized by level
         for (const level in spellsByLevel) {
             const ulElement = document.getElementById(`spellLvl${level}`);
             const searchInput = ulElement ? ulElement.previousElementSibling : null;
@@ -90,7 +89,25 @@ async function getSpells() {
                 ulElement.innerHTML = '';
                 spellsByLevel[level].forEach(spell => {
                     const liElement = document.createElement('li');
-                    liElement.textContent = spell.name;
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.className = 'spell-checkbox';
+                    checkbox.addEventListener('change', () => {
+                        const selectedSpellsList = document.getElementById('selected');
+                        if (checkbox.checked) {
+                            ulElement.removeChild(liElement);
+                            selectedSpellsList.appendChild(liElement);
+                        } else {
+                            selectedSpellsList.removeChild(liElement);
+                            ulElement.appendChild(liElement);
+                        }
+                    });
+
+                    liElement.appendChild(checkbox);
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = spell.name;
+                    liElement.appendChild(nameSpan);
 
                     const descriptionP = document.createElement('p');
                     descriptionP.className = 'spell-description';
@@ -118,7 +135,7 @@ async function getSpells() {
                     searchInput.addEventListener('input', () => {
                         const query = searchInput.value.toLowerCase();
                         Array.from(ulElement.children).forEach(li => {
-                            const name = li.textContent.toLowerCase();
+                            const name = li.querySelector('span').textContent.toLowerCase();
                             const description = li.querySelector('.spell-description')?.innerHTML.toLowerCase() || '';
                             if (name.includes(query) || description.includes(query)) {
                                 li.style.display = '';

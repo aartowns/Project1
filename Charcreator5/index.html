@@ -9,7 +9,7 @@
 </head>
 <body>
     <style>
-        .spellLevel {
+.spellLevel {
     height: 300px;
     overflow-y: auto;
     border: 1px solid #ccc;
@@ -55,11 +55,13 @@ li {
 }
 
 li:hover {
-    color: #D40B0B; 
+    color: #D40B0B;
+    text-decoration-line: underline; 
 }
 
-li:hover p {
+p, strong {
     color: black;
+    text-decoration-line: none;
     display: inline-block;
 }
     </style>
@@ -125,6 +127,12 @@ li:hover p {
             <input type="text" class="searchInput" placeholder="Search Lvl 9 spells by name or description...">
             <ul id="spellLvl9"></ul>
         </div>      
+    </div>
+    <div class="selectedSpells">
+        <h1>Selected Spells</h1>
+        <ul id="selected">
+            
+        </ul>
     </div>
 </body>
 </html>
