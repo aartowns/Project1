@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('popup');
     const closePopupBtn = document.getElementById('closePopup');
 
-    // Toggle popup visibility
+    //toggles popup
     togglePopupBtn.addEventListener('click', () => {
         if (popup.style.display === 'block' || popup.style.display === '') {
             popup.style.display = 'none';
@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close the popup
+    //closes
     closePopupBtn.addEventListener('click', () => {
         popup.style.display = 'none';
     });
 
-    // Close the popup if the user clicks outside of it
+    //closes the popup if user clicks anywhere else
     window.addEventListener('click', (event) => {
         if (event.target === popup) {
             popup.style.display = 'none';

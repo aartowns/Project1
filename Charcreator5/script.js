@@ -33,9 +33,9 @@ async function getSpells() {
                 uniqueSpellsMap.set(key, {
                     name: spell.name,
                     description: spell.desc,
-                    distance: spell.range || 'N/A', 
-                    materials: spell.material || 'N/A', 
-                    school: spell.school?.name || 'N/A', 
+                    distance: (spell.range === 0.1 || spell.range === 0 ? spell.range_text : (spell.range ? spell.range + ' Feet' : 'Unknown')), 
+                    materials: Array.isArray(spell.material_specified) ? spell.material_specified.join(', ') : spell.material_specified || 'None', 
+                    school: spell.school?.name || 'None', 
                     level: spell.level || 0 
                 });
             }
