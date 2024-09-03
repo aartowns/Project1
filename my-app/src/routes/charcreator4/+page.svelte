@@ -46,11 +46,9 @@
 		}
 	}
 
-	// Reactive statements
 	$: filteredFeats = filterFeats();
 	$: selectedFeatsData = featsArray.filter((feat) => selectedFeats.includes(feat.name));
 
-	// Function to handle the toggle of description visibility
 	function toggleDescription(featName) {
 		const listItem = document.getElementById(featName);
 		if (listItem) {
@@ -138,187 +136,167 @@
 </div>
 
 <style>
-	/* Common Scrollable Container Styling */
-.scrollable-container {
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px; /* Optional: add some padding for better visual spacing */
-    box-sizing: border-box; /* Ensure padding and border are included in the total width/height */
-}
+	.scrollable-container {
+		height: 100%;
+		overflow-y: auto;
+		padding: 10px;
+		box-sizing: border-box;
+	}
 
-/* Container for All Feats */
-.all-feats-container {
-    height: 800px; /* Adjust as needed */
-}
+	.all-feats-container {
+		height: 800px;
+	}
 
-/* Container for Selected Feats */
-.selected-feats-container {
-    height: 800px; /* Adjust as needed */
-}
+	.selected-feats-container {
+		height: 800px;
+	}
 
-/* Container Styling */
-.container {
-    width: 50%;
-    padding: 10px;
-    box-sizing: border-box;
-}
+	.container {
+		width: 50%;
+		padding: 10px;
+		box-sizing: border-box;
+	}
 
-/* List Styling */
-#resultList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+	#resultList {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-/* List Item Styling */
-#resultList li {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
-}
+	#resultList li {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 10px;
+		padding: 10px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		background-color: #f9f9f9;
+		transition: background-color 0.3s ease;
+	}
 
-/* Hover Effect */
-#resultList li:hover {
-    background-color: #999aad;
-}
+	#resultList li:hover {
+		background-color: #999aad;
+	}
 
-/* Button Styling */
-.feat-button {
-    all: unset; /* Remove default button styles */
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: text-decoration 0.3s; /* Smooth underline transition */
-    padding: 0; /* Ensure no extra padding around button */
-    margin: 0; /* Remove margin to align properly */
-}
+	.feat-button {
+		all: unset;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: text-decoration 0.3s;
+		padding: 0;
+		margin: 0;
+	}
 
-/* Center Align Content in Button */
-.feat-button > * {
-    margin: 0 5px; /* Space between checkbox and name */
-}
+	.feat-button > * {
+		margin: 0 5px;
+	}
 
-/* Underline on Hover */
-.feat-button:hover {
-    text-decoration: underline;
-    color: #d40b0b; /* Underline on hover */
-}
+	.feat-button:hover {
+		text-decoration: underline;
+		color: #d40b0b;
+	}
 
-/* Checkbox Styling */
-.searchInput {
-    margin-right: 10px; /* Space between checkbox and name */
-}
+	.searchInput {
+		margin-right: 10px;
+	}
 
-/* Description Styling */
-p {
-    display: none; /* Hide by default */
-    margin: 5px 0 0 0; /* Space between name and description */
-    padding: 5px;
-    font-size: 14px;
-    color: black;
-    background-color: #f0f0f0; /* Background color for readability */
-    border: 1px solid #ddd; /* Border for readability */
-}
+	p {
+		display: none;
+		margin: 5px 0 0 0;
+		padding: 5px;
+		font-size: 14px;
+		color: black;
+		background-color: #f0f0f0;
+		border: 1px solid #ddd;
+	}
 
-#resultList li.show-description p {
-    display: block; /* Show description when .show-description is added */
-}
+	#resultList li.show-description p {
+		display: block;
+	}
 
-/* Search Input Styling */
-.searchInput {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
+	.searchInput {
+		width: 100%;
+		padding: 8px;
+		box-sizing: border-box;
+		margin-bottom: 10px;
+	}
 
-/* Header Styling */
-.header {
-    background-color: #d40b0b;
-    width: 100vw;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    font-size: 60px;
-    border: solid black 0.5px;
-    border-bottom: 0.25px;
-}
+	.header {
+		background-color: #d40b0b;
+		width: 100vw;
+		height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		font-size: 60px;
+		border: solid black 0.5px;
+		border-bottom: 0.25px;
+	}
 
-/* Menu Styling */
-.menu {
-    width: 100vw;
-    height: 100px;
-    display: flex;
-    background-color: #999aad;
-    justify-content: center;
-    align-items: center;
-}
+	.menu {
+		width: 100vw;
+		height: 100px;
+		display: flex;
+		background-color: #999aad;
+		justify-content: center;
+		align-items: center;
+	}
 
-/* Menu Option Styling */
-.menuOption {
-    display: flex;
-    border: solid black 0.5px;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 50vw;
-    font-size: 40px;
-    border-bottom: 0.25px;
-}
+	.menuOption {
+		display: flex;
+		border: solid black 0.5px;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 50vw;
+		font-size: 40px;
+		border-bottom: 0.25px;
+	}
 
-/* Link Styling */
-.pageLink {
-    text-decoration: none;
-    color: black;
-}
+	.pageLink {
+		text-decoration: none;
+		color: black;
+	}
 
-.pageLink:hover {
-    text-decoration: underline;
-    color: cyan;
-}
+	.pageLink:hover {
+		text-decoration: underline;
+		color: cyan;
+	}
 
-/* Navigation Styling */
-.nextBack {
-    width: 100vw;
-    height: 5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #999aad;
-}
+	.nextBack {
+		width: 100vw;
+		height: 5em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #999aad;
+	}
 
-/* Back and Next Styling */
-.back,
-.next {
-    display: flex;
-    border: solid black 0.5px;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 50vw;
-    font-size: 40px;
-}
+	.back,
+	.next {
+		display: flex;
+		border: solid black 0.5px;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 50vw;
+		font-size: 40px;
+	}
 
-/* Navigation Link Styling */
-.nextBackLink {
-    text-decoration: none;
-    color: black;
-}
+	.nextBackLink {
+		text-decoration: none;
+		color: black;
+	}
 
-.nextBackLink:hover {
-    text-decoration: underline;
-    color: cyan;
-}
+	.nextBackLink:hover {
+		text-decoration: underline;
+		color: cyan;
+	}
 </style>
