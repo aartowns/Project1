@@ -1,118 +1,72 @@
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const search = document.getElementById('featSearch');
-		const allFeats = document.getElementById('resultList');
-		const selectedFeats = document.getElementById('selected');
-		let featsArray = [];
+	import { onMount } from 'svelte';
 
-		async function loadFeats() {
-			try {
-				let resp = await fetch('https://api.open5e.com/v2/feats/');
-				let data = await resp.json();
-				let feats = [...data.results];
+	let search = '';
+	let featsArray = [];
+	let selectedFeats = [];
 
-				while (data.next) {
-					resp = await fetch(data.next);
-					data = await resp.json();
-					feats.push(...data.results);
-				}
-
-				featsArray = feats;
-
-				feats.forEach((feat) => {
-					const li = document.createElement('li');
-					const checkbox = document.createElement('input');
-					const descElem = document.createElement('p');
-
-					checkbox.type = 'checkbox';
-					checkbox.classList.add('feat-checkbox');
-					checkbox.addEventListener('change', () => {
-						if (checkbox.checked) {
-							allFeats.removeChild(li);
-							selectedFeats.appendChild(li);
-							saveSelectedFeats();
-						} else {
-							selectedFeats.removeChild(li);
-							allFeats.appendChild(li);
-							saveSelectedFeats();
-						}
-					});
-
-					descElem.textContent = feat.desc;
-					descElem.classList.add('hidden');
-
-					li.id = feat.name;
-					li.textContent = feat.name;
-					li.prepend(checkbox);
-					li.appendChild(descElem);
-
-					li.addEventListener('click', (event) => {
-						if (event.target !== checkbox) {
-							descElem.classList.toggle('hidden');
-						}
-					});
-
-					allFeats.appendChild(li);
-				});
-
-				loadSelectedFeats();
-			} catch (error) {
-				console.error('Error loading feats:', error);
-				alert('Failed to load feats. Please try again later.');
-			}
-		}
-
-		function filterFeats(searchText) {
-			const lowerCaseText = searchText.toLowerCase();
-			featsArray.forEach((feat) => {
-				const li = document.getElementById(feat.name);
-				if (
-					feat.name.toLowerCase().includes(lowerCaseText) ||
-					feat.desc.toLowerCase().includes(lowerCaseText)
-				) {
-					li.classList.remove('hidden');
-				} else {
-					li.classList.add('hidden');
-				}
-			});
-		}
-
-		function saveSelectedFeats() {
-			const selectedItems = selectedFeats.querySelectorAll('li');
-			const selectedFeatsArray = Array.from(selectedItems).map((item) => item.id);
-			localStorage.setItem('selectedFeats', JSON.stringify(selectedFeatsArray));
-			alert('Selected feats have been saved!');
-		}
-
-		function loadSelectedFeats() {
-			const savedFeats = JSON.parse(localStorage.getItem('selectedFeats')) || [];
-			savedFeats.forEach((featName) => {
-				const li = document.getElementById(featName);
-				if (li) {
-					const checkbox = li.querySelector('input[type="checkbox"]');
-					checkbox.checked = true;
-					allFeats.removeChild(li);
-					selectedFeats.appendChild(li);
-				}
-			});
-		}
-
-		search.addEventListener('input', () => {
-			filterFeats(search.value);
-		});
-
-		loadFeats();
+	onMount(async () => {
+		await loadFeats();
 	});
+
+	async function loadFeats() {
+		try {
+			let resp = await fetch('https://api.open5e.com/v2/feats/');
+			let data = await resp.json();
+			let feats = [...data.results];
+
+			while (data.next) {
+				resp = await fetch(data.next);
+				data = await resp.json();
+				feats.push(...data.results);
+			}
+
+			featsArray = feats;
+			console.log('Loaded feats:', featsArray);
+		} catch (error) {
+			console.error('Error loading feats:', error);
+			alert('Failed to load feats. Please try again later.');
+		}
+	}
+
+	function filterFeats() {
+		const lowerCaseText = search.toLowerCase();
+		return featsArray.filter(
+			(feat) =>
+				feat.name.toLowerCase().includes(lowerCaseText) ||
+				feat.desc.toLowerCase().includes(lowerCaseText)
+		);
+	}
+
+	function toggleFeat(featName) {
+		if (selectedFeats.includes(featName)) {
+			selectedFeats = selectedFeats.filter((name) => name !== featName);
+		} else {
+			selectedFeats = [...selectedFeats, featName];
+		}
+	}
+
+	// Reactive statements
+	$: filteredFeats = filterFeats();
+	$: selectedFeatsData = featsArray.filter((feat) => selectedFeats.includes(feat.name));
+
+	// Function to handle the toggle of description visibility
+	function toggleDescription(featName) {
+		const listItem = document.getElementById(featName);
+		if (listItem) {
+			listItem.classList.toggle('show-description');
+		}
+	}
 </script>
 
 <header>
 	<div class="header">
-		<a class="pageLink" href="../index.html">Home</a>
+		<a class="pageLink" href="/">Home</a>
 	</div>
 </header>
 <div class="menu">
 	<div class="menuOption">
-		<a class="pageLink" href="../Charcreator/">Character Creator</a>
+		<a class="pageLink" href="charcreator1">Character Creator</a>
 	</div>
 	<div class="menuOption">
 		<a class="pageLink" href="../Char">Characters</a>
@@ -120,28 +74,63 @@
 </div>
 <div class="nextBack">
 	<div class="back">
-		<a class="nextBackLink" href="../Charcreator3/">Back</a>
+		<a class="nextBackLink" href="charcreator3">Back</a>
 	</div>
 	<div class="next">
-		<a class="nextBackLink" href="../Charcreator5/">Next</a>
+		<a class="nextBackLink" href="charcreator5">Next</a>
 	</div>
 </div>
 <div style="display: flex; flex-direction: row; text-align: center;">
 	<div class="container">
-		<div>
+		<div class="scrollable-container selected-feats-container">
 			<h1>Selected Feats</h1>
 			<div>
-				<ul id="selected"></ul>
+				<ul>
+					{#each selectedFeatsData as feat}
+						<li>{feat.name}</li>
+					{/each}
+				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-		<div class="scrollable-container">
+		<div class="scrollable-container all-feats-container">
 			<div style="justify-content: center;">
 				<h1>All Feats</h1>
-				<input type="search" name="feat" id="featSearch" />
+				<input
+					type="search"
+					bind:value={search}
+					class="searchInput"
+					placeholder="Search feats..."
+				/>
 				<div style="text-align: center;">
-					<ul id="resultList" style="overflow-y: scroll; list-style: none;"></ul>
+					<ul id="resultList">
+						{#each featsArray as feat}
+							{#if feat.name.toLowerCase().includes(search.toLowerCase()) || feat.desc
+									.toLowerCase()
+									.includes(search.toLowerCase())}
+								<li id={feat.name}>
+									<button
+										class="feat-button"
+										aria-expanded={selectedFeats.includes(feat.name)}
+										aria-controls={feat.name}
+										on:click={() => toggleDescription(feat.name)}
+									>
+										<input
+											type="checkbox"
+											class="searchInput"
+											checked={selectedFeats.includes(feat.name)}
+											on:change={() => toggleFeat(feat.name)}
+										/>
+										{feat.name}
+									</button>
+									<p id={feat.name} class:hidden={!selectedFeats.includes(feat.name)}>
+										{feat.desc}
+									</p>
+								</li>
+							{/if}
+						{/each}
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -149,271 +138,187 @@
 </div>
 
 <style>
-	.header {
-		background-color: #d40b0b;
-		width: 100vw;
-		height: 150px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 0;
-		margin: 0;
-		font-size: 60px;
-		border: solid black 0.5px;
-		border-bottom: 0.25px;
-	}
+	/* Common Scrollable Container Styling */
+.scrollable-container {
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px; /* Optional: add some padding for better visual spacing */
+    box-sizing: border-box; /* Ensure padding and border are included in the total width/height */
+}
 
-	.menu {
-		width: 100vw;
-		height: 100px;
-		display: flex;
-		background-color: #999aad;
-		justify-content: center;
-		align-items: center;
-	}
+/* Container for All Feats */
+.all-feats-container {
+    height: 800px; /* Adjust as needed */
+}
 
-	.menuOption {
-		display: flex;
-		border: solid black 0.5px;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-		width: 50vw;
-		font-size: 40px;
-		border-bottom: 0.25px;
-	}
+/* Container for Selected Feats */
+.selected-feats-container {
+    height: 800px; /* Adjust as needed */
+}
 
-	.pageLink {
-		text-decoration: none;
-		color: black;
-	}
+/* Container Styling */
+.container {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
-	.pageLink:hover {
-		text-decoration: underline;
-		color: cyan;
-	}
+/* List Styling */
+#resultList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-	.nextBack {
-		width: 100vw;
-		height: 5em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #999aad;
-	}
+/* List Item Styling */
+#resultList li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
 
-	.back,
-	.next {
-		display: flex;
-		border: solid black 0.5px;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-		width: 50vw;
-		font-size: 40px;
-	}
+/* Hover Effect */
+#resultList li:hover {
+    background-color: #999aad;
+}
 
-	.nextBackLink {
-		text-decoration: none;
-		color: black;
-	}
+/* Button Styling */
+.feat-button {
+    all: unset; /* Remove default button styles */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: text-decoration 0.3s; /* Smooth underline transition */
+    padding: 0; /* Ensure no extra padding around button */
+    margin: 0; /* Remove margin to align properly */
+}
 
-	.nextBackLink:hover {
-		text-decoration: underline;
-		color: cyan;
-	}
+/* Center Align Content in Button */
+.feat-button > * {
+    margin: 0 5px; /* Space between checkbox and name */
+}
 
-	.label {
-		font-size: 20px;
-	}
+/* Underline on Hover */
+.feat-button:hover {
+    text-decoration: underline;
+    color: #d40b0b; /* Underline on hover */
+}
 
-	.spellLevel {
-		display: flex;
-		flex: wrap;
-		justify-content: center;
-		align-items: center;
-		min-width: 40em;
-		min-height: 20em;
-		max-width: 40em;
-		max-height: 20em;
-		background-color: #999aad;
-		margin: 60px;
-		padding: 0;
-		border: solid black 0.5px;
-	}
+/* Checkbox Styling */
+.searchInput {
+    margin-right: 10px; /* Space between checkbox and name */
+}
 
-	.info {
-		text-align: center;
-	}
+/* Description Styling */
+p {
+    display: none; /* Hide by default */
+    margin: 5px 0 0 0; /* Space between name and description */
+    padding: 5px;
+    font-size: 14px;
+    color: black;
+    background-color: #f0f0f0; /* Background color for readability */
+    border: 1px solid #ddd; /* Border for readability */
+}
 
-	#nav {
-		justify-content: center;
-		align-items: center;
-		text-decoration: none;
-		margin: 0;
-		padding: 0;
-	}
+#resultList li.show-description p {
+    display: block; /* Show description when .show-description is added */
+}
 
-	#nav li a {
-		display: block;
-		padding: 0;
-		text-decoration: none;
-		width: 200px;
-		line-height: 35px;
-		color: #ffffff;
-	}
+/* Search Input Styling */
+.searchInput {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
 
-	#nav li li a {
-		font-size: 80%;
-	}
+/* Header Styling */
+.header {
+    background-color: #d40b0b;
+    width: 100vw;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 60px;
+    border: solid black 0.5px;
+    border-bottom: 0.25px;
+}
 
-	#nav li:hover {
-		background: #d40b0b;
-	}
+/* Menu Styling */
+.menu {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    background-color: #999aad;
+    justify-content: center;
+    align-items: center;
+}
 
-	#nav ul {
-		padding: 0;
-		left: 0;
-		display: none;
-	}
+/* Menu Option Styling */
+.menuOption {
+    display: flex;
+    border: solid black 0.5px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50vw;
+    font-size: 40px;
+    border-bottom: 0.25px;
+}
 
-	#nav li:hover ul ul {
-		display: none;
-	}
+/* Link Styling */
+.pageLink {
+    text-decoration: none;
+    color: black;
+}
 
-	#nav li:hover ul {
-		display: block;
-		position: relative;
-	}
+.pageLink:hover {
+    text-decoration: underline;
+    color: cyan;
+}
 
-	#nav li li:hover ul {
-		display: block;
-	}
+/* Navigation Styling */
+.nextBack {
+    width: 100vw;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #999aad;
+}
 
-	#nav li a:hover {
-		color: cyan;
-	}
+/* Back and Next Styling */
+.back,
+.next {
+    display: flex;
+    border: solid black 0.5px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50vw;
+    font-size: 40px;
+}
 
-	.container {
-		width: 50%;
-		height: 100%;
-		align-items: center;
-		justify-content: center;
-	}
+/* Navigation Link Styling */
+.nextBackLink {
+    text-decoration: none;
+    color: black;
+}
 
-	#resultList li:hover {
-		color: #d40b0b;
-		text-decoration-line: underline;
-	}
-
-	#resultList li:hover p {
-		text-decoration-line: none;
-		color: black;
-		display: inline-block;
-	}
-
-	.spellLevel {
-		height: 300px;
-		overflow-y: auto;
-		border: 1px solid #ccc;
-		padding: 10px;
-		margin: 10px 0;
-		position: relative;
-	}
-
-	.searchInput {
-		width: 100%;
-		padding: 8px;
-		box-sizing: border-box;
-		margin-bottom: 10px;
-	}
-
-	.spellLevel ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.spellLevel li {
-		padding: 5px 0;
-	}
-
-	.selectedSpells {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		min-width: 91.5%;
-		min-height: 20em;
-		max-width: 91.5%;
-		max-height: 20em;
-		background-color: #999aad;
-		margin: 60px;
-		padding: 0;
-		border: solid black 0.5px;
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
-
-	.selectedSpells ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-		width: 100%;
-	}
-
-	.selectedSpells h1 {
-		margin: 0;
-		padding: 10px 0;
-		text-align: center;
-		width: 100%;
-	}
-
-	.scrollable-container {
-		overflow-y: auto;
-		height: 900px;
-	}
-
-	#featSearch {
-		width: 100%;
-		padding: 10px;
-		margin-bottom: 20px;
-	}
-
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	li {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 10px;
-		border: 1px solid #ddd;
-		border-radius: 5px;
-		margin-bottom: 10px;
-		cursor: pointer;
-		background-color: #999aad;
-	}
-
-	li input[type='checkbox'] {
-		margin-bottom: 10px;
-	}
-
-	.hidden {
-		display: none;
-	}
-
-	p {
-		margin: 0;
-		padding: 5px;
-		background-color: #f1f1f1;
-		border: 1px solid #ddd;
-		border-radius: 5px;
-		text-align: center;
-		display: inline-block;
-		text-decoration: none;
-	}
+.nextBackLink:hover {
+    text-decoration: underline;
+    color: cyan;
+}
 </style>

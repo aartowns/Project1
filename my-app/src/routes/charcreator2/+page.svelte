@@ -128,11 +128,6 @@
 			<input id="persuasion" type="checkbox" />
 		</label>
 	</div>
-	<div class="createOptions" style="gap: 40px;">
-		<button type="button" id="saveButton" style="font-family: fantasy; font-size: 20px;"
-			>Save</button
-		>
-	</div>
 </div>
 
 <style>
@@ -181,21 +176,6 @@
 		gap: 20px;
 		margin: 0;
 		flex-direction: row;
-	}
-
-	.createOptions {
-		display: flex;
-		flex: wrap;
-		justify-content: center;
-		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
-		background-color: #999aad;
-		margin: 60px;
-		padding: 0;
-		border: solid black 0.5px;
 	}
 
 	.pageLink {

@@ -158,9 +158,6 @@
             <option class="option" value="18">18</option>
         </select>
     </div>
-    <div class="createOptions" style="gap: 40px;">
-        <button type="button" id="saveButton" style="font-family: fantasy; font-size: 20px;">Save</button>
-    </div>
 </div>
 
 <style>
