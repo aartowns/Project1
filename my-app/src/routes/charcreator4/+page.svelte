@@ -1,70 +1,113 @@
-<script>
-	import { onMount } from 'svelte';
+document.addEventListener("DOMContentLoaded", () => {
+    const search = document.getElementById("featSearch");
+    const allFeats = document.getElementById("resultList");
+    const selectedFeats = document.getElementById("selected");
+    let featsArray = [];
 
-	let search = '';
-	let featsArray = [];
-	let selectedFeats = [];
+    async function loadFeats() {
+        try {
+            let resp = await fetch("https://api.open5e.com/v2/feats/");
+            let data = await resp.json();
+            let feats = [...data.results];
 
-	onMount(async () => {
-		await loadFeats();
-	});
+            while (data.next) {
+                resp = await fetch(data.next);
+                data = await resp.json();
+                feats.push(...data.results);
+            }
 
-	async function loadFeats() {
-		try {
-			let resp = await fetch('https://api.open5e.com/v2/feats/');
-			let data = await resp.json();
-			let feats = [...data.results];
+            featsArray = feats;
 
-			while (data.next) {
-				resp = await fetch(data.next);
-				data = await resp.json();
-				feats.push(...data.results);
-			}
+            feats.forEach(feat => {
+                const li = document.createElement("li");
+                const checkbox = document.createElement("input");
+                const descElem = document.createElement("p");
 
-			featsArray = feats;
-			console.log('Loaded feats:', featsArray);
-		} catch (error) {
-			console.error('Error loading feats:', error);
-			alert('Failed to load feats. Please try again later.');
-		}
-	}
+                checkbox.type = "checkbox";
+                checkbox.classList.add("feat-checkbox");
+                checkbox.addEventListener("change", () => {
+                    if (checkbox.checked) {
+                        allFeats.removeChild(li);
+                        selectedFeats.appendChild(li);
+                        saveSelectedFeats();
+                    } else {
+                        selectedFeats.removeChild(li);
+                        allFeats.appendChild(li);
+                        saveSelectedFeats();
+                    }
+                });
 
-	function filterFeats() {
-		const lowerCaseText = search.toLowerCase();
-		return featsArray.filter(
-			(feat) =>
-				feat.name.toLowerCase().includes(lowerCaseText) ||
-				feat.desc.toLowerCase().includes(lowerCaseText)
-		);
-	}
+                descElem.textContent = feat.desc;
+                descElem.classList.add("hidden");
 
-	function toggleFeat(featName) {
-		if (selectedFeats.includes(featName)) {
-			selectedFeats = selectedFeats.filter((name) => name !== featName);
-		} else {
-			selectedFeats = [...selectedFeats, featName];
-		}
-	}
+                li.id = feat.name;
+                li.textContent = feat.name;
+                li.prepend(checkbox);
+                li.appendChild(descElem);
 
-	$: filteredFeats = filterFeats();
-	$: selectedFeatsData = featsArray.filter((feat) => selectedFeats.includes(feat.name));
+                li.addEventListener("click", (event) => {
+                    if (event.target !== checkbox) {
+                        descElem.classList.toggle("hidden");
+                    }
+                });
 
-	function toggleDescription(featName) {
-		const listItem = document.getElementById(featName);
-		if (listItem) {
-			listItem.classList.toggle('show-description');
-		}
-	}
-</script>
+                allFeats.appendChild(li);
+            });
+
+            loadSelectedFeats();
+        } catch (error) {
+            console.error('Error loading feats:', error);
+            alert('Failed to load feats. Please try again later.');
+        }
+    }
+
+    function filterFeats(searchText) {
+        const lowerCaseText = searchText.toLowerCase();
+        featsArray.forEach(feat => {
+            const li = document.getElementById(feat.name);
+            if (feat.name.toLowerCase().includes(lowerCaseText) || feat.desc.toLowerCase().includes(lowerCaseText)) {
+                li.classList.remove("hidden");
+            } else {
+                li.classList.add("hidden");
+            }
+        });
+    }
+
+    function saveSelectedFeats() {
+        const selectedItems = selectedFeats.querySelectorAll('li');
+        const selectedFeatsArray = Array.from(selectedItems).map(item => item.id);
+        localStorage.setItem('selectedFeats', JSON.stringify(selectedFeatsArray));
+        alert('Selected feats have been saved!');
+    }
+
+    function loadSelectedFeats() {
+        const savedFeats = JSON.parse(localStorage.getItem('selectedFeats')) || [];
+        savedFeats.forEach(featName => {
+            const li = document.getElementById(featName);
+            if (li) {
+                const checkbox = li.querySelector('input[type="checkbox"]');
+                checkbox.checked = true;
+                allFeats.removeChild(li);
+                selectedFeats.appendChild(li);
+            }
+        });
+    }
+
+    search.addEventListener("input", () => {
+        filterFeats(search.value);
+    });
+
+    loadFeats();
+});
 
 <header>
 	<div class="header">
-		<a class="pageLink" href="/">Home</a>
+		<a class="pageLink" href="../index.html">Home</a>
 	</div>
 </header>
 <div class="menu">
 	<div class="menuOption">
-		<a class="pageLink" href="charcreator1">Character Creator</a>
+		<a class="pageLink" href="../Charcreator/">Character Creator</a>
 	</div>
 	<div class="menuOption">
 		<a class="pageLink" href="../Char">Characters</a>
@@ -72,62 +115,31 @@
 </div>
 <div class="nextBack">
 	<div class="back">
-		<a class="nextBackLink" href="charcreator3">Back</a>
+		<a class="nextBackLink" href="../Charcreator3/">Back</a>
 	</div>
 	<div class="next">
-		<a class="nextBackLink" href="charcreator5">Next</a>
+		<a class="nextBackLink" href="../Charcreator5/">Next</a>
 	</div>
 </div>
 <div style="display: flex; flex-direction: row; text-align: center;">
 	<div class="container">
-		<div class="scrollable-container selected-feats-container">
+		<div>
 			<h1>Selected Feats</h1>
 			<div>
-				<ul>
-					{#each selectedFeatsData as feat}
-						<li>{feat.name}</li>
-					{/each}
+				<ul id="selected">
+
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-		<div class="scrollable-container all-feats-container">
+		<div class="scrollable-container">
 			<div style="justify-content: center;">
 				<h1>All Feats</h1>
-				<input
-					type="search"
-					bind:value={search}
-					class="searchInput"
-					placeholder="Search feats..."
-				/>
+				<input type="search" name="feat" id="featSearch">
 				<div style="text-align: center;">
-					<ul id="resultList">
-						{#each featsArray as feat}
-							{#if feat.name.toLowerCase().includes(search.toLowerCase()) || feat.desc
-									.toLowerCase()
-									.includes(search.toLowerCase())}
-								<li id={feat.name}>
-									<button
-										class="feat-button"
-										aria-expanded={selectedFeats.includes(feat.name)}
-										aria-controls={feat.name}
-										on:click={() => toggleDescription(feat.name)}
-									>
-										<input
-											type="checkbox"
-											class="searchInput"
-											checked={selectedFeats.includes(feat.name)}
-											on:change={() => toggleFeat(feat.name)}
-										/>
-										{feat.name}
-									</button>
-									<p id={feat.name} class:hidden={!selectedFeats.includes(feat.name)}>
-										{feat.desc}
-									</p>
-								</li>
-							{/if}
-						{/each}
+					<ul id="resultList" style="overflow-y: scroll; list-style: none;">
+
 					</ul>
 				</div>
 			</div>

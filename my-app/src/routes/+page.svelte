@@ -9,30 +9,44 @@
         isPopupVisible = false;
     }
 
-    /**
-     * Handles clicks outside the popup to close it.
-     * @param {MouseEvent} event - The click event.
-     */
-	 function handleClickOutside(event) {
-        const popup = document.getElementById('popup');
-        const toggleButton = document.getElementById('togglePopup');
+	 /**
+ * Description placeholder
+ *
+ * @param {Event} event
+ */
+function handleClickOutside(event) {
+    const popup = document.getElementById('popup');
+    const toggleButton = document.getElementById('togglePopup');
 
-        // Ensure event.target is a Node
-        if (popup && event.target instanceof Node) {
-            // Check if click is outside of the popup and not on the toggle button
-            if (!popup.contains(event.target) && event.target !== toggleButton) {
-                closePopup();
-            }
+    // Ensure event.target is a Node
+    if (popup && event.target instanceof Node) {
+        // Check if click is outside of the popup and not on the toggle button
+        if (!popup.contains(event.target) && event.target !== toggleButton) {
+            closePopup();
         }
     }
+}
+
+/**
+ * Description placeholder
+ * @param {number} min
+ * @param {number} max
+ */
+ function rollD20(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let diceRoll = 0;
+
+function handleRoll() {
+    diceRoll = rollD20(1, 20)
+} 
+
 
     // Ensure event listeners are only added on the client side
-    import { onMount, onDestroy } from 'svelte';
+    import { onMount } from 'svelte';
     onMount(() => {
         window.addEventListener('click', handleClickOutside);
-        onDestroy(() => {
-            window.removeEventListener('click', handleClickOutside);
-        });
     });
 </script>
 
@@ -50,6 +64,10 @@
     </div>
 </div>
 <div class="wrapper" style="width: 100vw; height: 100vh;">
+    <button id="roll" class="roll" on:click={handleRoll}>
+        <h4>Click me to roll a D20!</h4>
+        <p>Result: {diceRoll}</p>
+    </button>
     <button id="togglePopup" class="popup-btn" on:click={togglePopup}>Toggle Info</button>
     <div id="popup" class="popup {isPopupVisible ? 'visible' : ''}">
         <div class="popup-content">
@@ -64,6 +82,18 @@
 </div>
 
 <style>
+    .roll {
+        background-color: #d40b0b;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 20px 0;
+        cursor: pointer;
+    }
     .header {
         background-color: #d40b0b;
         width: 100vw;
