@@ -65,3 +65,5 @@ function downloadData(data, filename){
 function PrettyPrint(obj){
     return JSON.stringify(obj, null, 2);
 }
+
+my-app/src/routes/[userid]/characters/[characterid]/charcreator/4/+page.svelte

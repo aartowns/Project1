@@ -1,4 +1,5 @@
 <script>
+    import {user} from '$lib/stores'
     let isPopupVisible = false;
 
     function togglePopup() {
@@ -47,22 +48,10 @@ function handleRoll() {
     import { onMount } from 'svelte';
     onMount(() => {
         window.addEventListener('click', handleClickOutside);
+        $user='Aaron';
     });
 </script>
 
-<header>
-    <div class="header">
-        <a class="pageLink" href="/">Home</a>
-    </div>
-</header>
-<div class="menu">
-    <div class="menuOption">
-        <a class="pageLink" href="charcreator1">Character Creator</a>
-    </div>
-    <div class="menuOption">
-        <a class="pageLink" href="../Char">Characters</a>
-    </div>
-</div>
 <div class="wrapper" style="width: 100vw; height: 100vh;">
     <button id="roll" class="roll" on:click={handleRoll}>
         <h4>Click me to roll a D20!</h4>
@@ -94,39 +83,7 @@ function handleRoll() {
         margin: 20px 0;
         cursor: pointer;
     }
-    .header {
-        background-color: #d40b0b;
-        width: 100vw;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        font-size: 60px;
-        border: solid black 0.5px;
-        border-bottom: 0.25px;
-    }
-
-    .menu {
-        width: 100vw;
-        height: 100px;
-        display: flex;
-        background-color: #999aad;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .menuOption {
-        display: flex;
-        border: solid black 0.5px;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 50vw;
-        font-size: 40px;
-        border-bottom: 0.25px;
-    }
+    
 
     .wrapper {
         display: flex;
@@ -141,15 +98,7 @@ function handleRoll() {
         flex-direction: row;
     }
 
-    .pageLink {
-        text-decoration: none;
-        color: black;
-    }
-
-    .pageLink:hover {
-        text-decoration: underline;
-        color: cyan;
-    }
+    
 
     .wrapper {
         background-image: url('https://us.123rf.com/450wm/paulzhuk/paulzhuk1801/paulzhuk180100011/92649668-roleplay-game-with-dragons-in-dungeon-yellow-field-dice.jpg?ver=6');
