@@ -1,13 +1,12 @@
 
-
 <header>
     <div class="header">
-        <a class="pageLink" href="../index.html">Home</a>
+        <a class="pageLink" href="/">Home</a>
     </div>
 </header>
 <div class="menu">
     <div class="menuOption">
-        <a class="pageLink" href="../Charcreator">Character Creator</a>
+        <a class="pageLink" href="/[userid]/characters/[characterid]/charcreator/charMenu">Character Creator</a>
     </div>
     <div class="menuOption">
         <a class="pageLink" href="../Char">Characters</a>
@@ -15,8 +14,12 @@
 </div>
 
 <style>
+    :global(:root) {
+    --button-bg: #999aa1;
+    --button-selected: #d40b0b;
+}
     .header {
-        background-color: #d40b0b;
+        background-color: var(--button-selected);
         width: 100vw;
         height: 150px;
         display: flex;
@@ -33,7 +36,7 @@
         width: 100vw;
         height: 100px;
         display: flex;
-        background-color: #999aad;
+        background-color: var(--button-bg);
         justify-content: center;
         align-items: center;
     }

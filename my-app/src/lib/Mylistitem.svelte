@@ -45,7 +45,7 @@
     }
 
     li:hover {
-		color: #d40b0b;
+		color: var(--button-selected);
 		cursor: pointer;
 	}
 </style>

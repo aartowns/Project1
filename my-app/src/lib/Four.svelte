@@ -2,6 +2,7 @@
 	import Mylistitem from '$lib/Mylistitem.svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+    export let character;
 
 	/**
 	 * @type {HTMLInputElement}
@@ -138,7 +139,7 @@
 
 <style>
 	.scrollable-container {
-		height: 500px;
+		height: 900px;
 		overflow-y: auto;
 		padding: 10px;
 		box-sizing: border-box;

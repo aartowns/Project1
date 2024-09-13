@@ -1,5 +1,5 @@
 .header {
-    background-color: #D40B0B;
+    background-color: var(--button-selected);
     width: 100vw;
     height: 150px;
     display: flex;
@@ -16,7 +16,7 @@
     width: 100vw;
     height: 100px;
     display: flex;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     justify-content: center;
     align-items: center;
 }
@@ -54,7 +54,7 @@
     min-height: 5em;
     max-width: 20em;
     max-height: 5em;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     margin: 60px;
     padding: 0;
     border: solid black .5px;
@@ -94,7 +94,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
 }
 
 .back, .next {
@@ -126,7 +126,7 @@
     min-height: 5em;
     max-width: 20em;
     max-height: 5em;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     margin: 60px;
     padding: 0;
     border: solid black .5px; 
@@ -145,7 +145,7 @@
     min-height: 20em;
     max-width: 40em;
     max-height: 20em;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     margin: 60px;
     padding: 0;
     border: solid black .5px;
@@ -156,7 +156,7 @@
     justify-content: center;
     width: 100%;
     height: 35px;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     margin: 0;
     border: solid black .5px;
 }
@@ -187,7 +187,7 @@
 }
   
 #nav li:hover {
-    background: #D40B0B;
+    background: var(--button-selected);
 }
   
 #nav ul {
@@ -230,7 +230,7 @@
 }
 
 #resultList li:hover {
-    color:#D40B0B;
+    color:var(--button-selected);
     text-decoration-line: underline;
 }
 
@@ -275,7 +275,7 @@
     min-height: 20em;
     max-width: 91.5%;
     max-height: 20em;
-    background-color: #999AAD;
+    background-color: var(--button-bg);
     margin: 60px; 
     padding: 0;
     border: solid black .5px;

@@ -1,22 +1,15 @@
-<header>
-	<div class="header">
-		<a class="pageLink" href="../index.html">Home</a>
-	</div>
-</header>
-<div class="menu">
-	<div class="menuOption">
-		<a class="pageLink" href="../Charcreator">Character Creator</a>
-	</div>
-	<div class="menuOption">
-		<a class="pageLink" href="../Char">Characters</a>
-	</div>
-</div>
+<script>
+    export let character;
+    const onAthleticsChange = (/** @type {{ target: { value: boolean; }; }} */ event)=> {
+        $character.Athletics = event.target.value;
+    }
+</script>
 
 <div class="wrapper">
 	<div class="skill">
 		<label class="label" for="athletics"
 			>Athletics
-			<input id="athletics" type="checkbox" />
+			<input bind:checked={$character.Athletics} id="athletics" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
@@ -124,40 +117,6 @@
 </div>
 
 <style>
-	.header {
-		background-color: #d40b0b;
-		width: 100vw;
-		height: 150px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 0;
-		margin: 0;
-		font-size: 60px;
-		border: solid black 0.5px;
-		border-bottom: 0.25px;
-	}
-
-	.menu {
-		width: 100vw;
-		height: 100px;
-		display: flex;
-		background-color: #999aad;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.menuOption {
-		display: flex;
-		border: solid black 0.5px;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-		width: 50vw;
-		font-size: 40px;
-		border-bottom: 0.25px;
-	}
-
 	.wrapper {
 		display: flex;
 		flex-wrap: wrap;
@@ -171,18 +130,6 @@
 		flex-direction: row;
 	}
 
-	.pageLink {
-		text-decoration: none;
-		color: black;
-	}
-
-	.pageLink:hover {
-		text-decoration: underline;
-		color: cyan;
-	}
-
-	
-
 	.skill {
 		display: flex;
 		flex: wrap;
@@ -192,7 +139,7 @@
 		min-height: 5em;
 		max-width: 20em;
 		max-height: 5em;
-		background-color: #999aad;
+		background-color: var(--button-bg);
 		margin: 60px;
 		padding: 0;
 		border: solid black 0.5px;

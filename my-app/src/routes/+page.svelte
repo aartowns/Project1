@@ -72,7 +72,7 @@ function handleRoll() {
 
 <style>
     .roll {
-        background-color: #d40b0b;
+        background-color: var(--button-selected);
         border: none;
         color: white;
         padding: 15px 32px;
@@ -142,13 +142,13 @@ function handleRoll() {
 
     .close-btn:hover,
     .close-btn:focus {
-        color: #d40b0b;
+        color: var(--button-selected);
         text-decoration: none;
         cursor: pointer;
     }
 
     .popup-btn {
-        background-color: #d40b0b;
+        background-color: var(--button-selected);
         border: none;
         color: white;
         padding: 15px 32px;
