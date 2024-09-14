@@ -1,117 +1,140 @@
 <script>
+	import { json } from "@sveltejs/kit";
+
     export let character;
     const onAthleticsChange = (/** @type {{ target: { value: boolean; }; }} */ event)=> {
         $character.Athletics = event.target.value;
     }
+	const onSkillChanged = (/** @type {Event & { currentTarget: EventTarget & HTMLInputElement; }} */ val)=> {
+		// @ts-ignore
+		console.log(val.target.id, val.target.checked )
+		// @ts-ignore
+		if (val.target.checked) {
+			// @ts-ignore
+			if (!$character.ProficientSkills.includes(val.target?.id ?? '')) {
+				// @ts-ignore
+				$character.ProficientSkills.push(val.target.id)
+			}
+		} else {
+			// @ts-ignore
+			if ($character.ProficientSkills.includes(val.target?.id ?? '')) {
+				$character.ProficientSkills = $character.ProficientSkills.filter((skill)=> {
+					return !skill == val.target.id
+				})
+			}
+		}
+		console.log($character)
+    }
+
 </script>
 
 <div class="wrapper">
 	<div class="skill">
 		<label class="label" for="athletics"
 			>Athletics
-			<input bind:checked={$character.Athletics} id="athletics" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="athletics" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="acrobatics"
 			>Acrobatics
-			<input id="acrobatics" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="acrobatics" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="sleight-of-hand"
 			>Sleight of Hand
-			<input id="sleight-of-hand" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="sleight-of-hand" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="stealth"
 			>Stealth
-			<input id="stealth" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="stealth" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="arcana"
 			>Arcana
-			<input id="arcana" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="arcana" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="history"
 			>History
-			<input id="history" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="history" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="investigation"
 			>Investigation
-			<input id="investigation" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="investigation" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="nature"
 			>Nature
-			<input id="nature" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="nature" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="religion"
 			>Religion
-			<input id="religion" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="religion" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="animal-handling"
 			>Animal Handling
-			<input id="animal-handling" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="animal-handling" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="insight"
 			>Insight
-			<input id="insight" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="insight" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="medicine"
 			>Medicine
-			<input id="medicine" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="medicine" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="perception"
 			>Perception
-			<input id="perception" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="perception" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="survival"
 			>Survival
-			<input id="survival" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="survival" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="deception"
 			>Deception
-			<input id="deception" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="deception" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="intimidation"
 			>Intimidation
-			<input id="intimidation" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="intimidation" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="performance"
 			>Performance
-			<input id="performance" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="performance" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
 		<label class="label" for="persuasion"
 			>Persuasion
-			<input id="persuasion" type="checkbox" />
+			<input on:input={(e)=>onSkillChanged(e)} id="persuasion" type="checkbox" />
 		</label>
 	</div>
 </div>

@@ -15,6 +15,8 @@
         Background: 'Acolyte',
         RolledHitpoints: 0,
         Name: '',
+        ProficientSkills: [],
+        
 
 
      });
