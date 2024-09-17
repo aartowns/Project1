@@ -1,28 +1,30 @@
 <script>
+	// @ts-ignore
 	import { json } from "@sveltejs/kit";
+	export let character;
 
-    export let character;
-    const onAthleticsChange = (/** @type {{ target: { value: boolean; }; }} */ event)=> {
-        $character.Athletics = event.target.value;
-    }
-	const onSkillChanged = (/** @type {Event & { currentTarget: EventTarget & HTMLInputElement; }} */ val)=> {
+	const onSkillChanged = (/** @type {Event & { currentTarget: EventTarget & HTMLInputElement; }} */ event)=> {
 		// @ts-ignore
-		console.log(val.target.id, val.target.checked )
+		const skillId = event.target.id;
 		// @ts-ignore
-		if (val.target.checked) {
+		const isChecked = event.target.checked;
+		// @ts-ignore
+		console.log(skillId, isChecked);
+		// @ts-ignore
+		if (isChecked) {
 			// @ts-ignore
-			if (!$character.ProficientSkills.includes(val.target?.id ?? '')) {
+			if (!$character.ProficientSkills.includes(skillId)) {
 				// @ts-ignore
-				$character.ProficientSkills.push(val.target.id)
+				$character.ProficientSkills.push(skillId)
 			}
 		} else {
 			// @ts-ignore
-			if ($character.ProficientSkills.includes(val.target?.id ?? '')) {
-				$character.ProficientSkills = $character.ProficientSkills.filter((skill)=> {
-					return !skill == val.target.id
-				})
+			if ($character.ProficientSkills.includes(skillId)) {
+				// @ts-ignore
+				$character.ProficientSkills = $character.ProficientSkills.filter((/** @type {any} */ skill) => skill !== skillId);	
 			}
 		}
+		// @ts-ignore
 		console.log($character)
     }
 

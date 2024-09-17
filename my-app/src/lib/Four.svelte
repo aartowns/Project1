@@ -44,9 +44,16 @@
 			} while (data.next);
 		} catch (error) {
 			console.error('Error loading feats:', error);
-			alert('Failed to load feats. Please try again later.');
 		}
 	}
+
+	function onChangeFeat() {
+    $character.chosenFeats = getSelectedFeats().map((feat) =>({
+        name: feat.name,
+        description: feat.desc
+    }));
+}
+
 	function getSelectedFeats() {
 		return $featsArray.filter((feat) => {
 			return feat.isSelected;
@@ -94,6 +101,7 @@
 									isSelected={feat.isSelected}
 									on:selectToggled={(ev) => {
 										feat.isSelected = ev.detail.isSelected;
+										onChangeFeat();
 									}}
 								></Mylistitem>
 							</li>
@@ -125,6 +133,7 @@
 										isSelected={feat.isSelected}
 										on:selectToggled={(ev) => {
 											feat.isSelected = ev.detail.isSelected;
+											onChangeFeat();
 										}}
 									></Mylistitem>
 								</li>
