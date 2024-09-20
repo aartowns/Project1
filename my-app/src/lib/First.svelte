@@ -1,28 +1,34 @@
 <script>
-    export let character;
-    const onLevelChange = ( /** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.Level = event.target.value;
-    }
-    const onRaceChange = (/** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.Race = event.target.value;
-    }
-    const onClassChange = (/** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.Class = event.target.value;
-    }
-    const onBackgroundChange = ( /** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.Background = event.target.value;
-    }
-    const onHitPointChange = (/** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.RolledHitpoints = event.target.value;
-    }
-    const onNameChange = (/** @type {{ target: { value: any; }; }} */ event)=> {
-        $character.Name = event.target.value;
-    }
+	export let character;
+	const onLevelChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.Level = event.target.value;
+	};
+	const onRaceChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.Race = event.target.value;
+	};
+	const onClassChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.Class = event.target.value;
+	};
+	const onBackgroundChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.Background = event.target.value;
+	};
+	const onHitPointChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.RolledHitpoints = event.target.value;
+	};
+	const onNameChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		$character.Name = event.target.value;
+	};
 </script>
+
 <div class="wrapper">
 	<div class="createOptions">
 		<label class="labelPg1" for="Level">Level:</label>
-		<select bind:value={$character.Level} name="Level" id="Level" style="font-family: fantasy; font-size: 20px;">
+		<select
+			bind:value={$character.Level}
+			name="Level"
+			id="Level"
+			style="font-family: fantasy; font-size: 20px;"
+		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
 			<option class="option" value={3}>3</option>
@@ -47,7 +53,12 @@
 	</div>
 	<div class="createOptions">
 		<label class="labelPg1" for="Race">Race:</label>
-		<select bind:value={$character.Race} name="Race" id="Race" style="font-family: fantasy; font-size: 20px;">
+		<select
+			bind:value={$character.Race}
+			name="Race"
+			id="Race"
+			style="font-family: fantasy; font-size: 20px;"
+		>
 			<option value="Dragonborn" class="option">Dragonborn</option>
 			<option value="Dwarf" class="option">Dwarf</option>
 			<option value="Elf" class="option">Elf</option>
@@ -61,7 +72,12 @@
 	</div>
 	<div class="createOptions">
 		<label class="labelPg1" for="Class">Class:</label>
-		<select bind:value={$character.Class} name="Class" id="Class" style="font-family: fantasy; font-size: 20px;">
+		<select
+			bind:value={$character.Class}
+			name="Class"
+			id="Class"
+			style="font-family: fantasy; font-size: 20px;"
+		>
 			<option value="Barbarian" class="option">Barbarian</option>
 			<option value="Bard" class="option">Bard</option>
 			<option value="Cleric" class="option">Cleric</option>
@@ -78,14 +94,19 @@
 	</div>
 	<div class="createOptions">
 		<label class="labelPg1" for="Background">Background:</label>
-		<select bind:value={$character.Background} name="Background" id="Background" style="font-family: fantasy; font-size: 20px;">
+		<select
+			bind:value={$character.Background}
+			name="Background"
+			id="Background"
+			style="font-family: fantasy; font-size: 20px;"
+		>
 			<option value="Acolyte" class="option">Acolyte</option>
 		</select>
 	</div>
 	<div class="createOptions" style="padding-left: 10px; padding-right: 5px;">
 		<label class="labelPg1" for="hitpoints" style="padding-right: 5px;">Rolled Hitpoints:</label>
 		<input
-            bind:value={$character.RolledHitpoints}
+			bind:value={$character.RolledHitpoints}
 			type="number"
 			id="hitpoints"
 			name="hitpoints"
@@ -94,7 +115,13 @@
 	</div>
 	<div class="createOptions">
 		<label class="labelPg1" for="name" style="padding-right: 5px;">Name:</label>
-		<input bind:value={$character.Name} type="text" id="name" name="name" style="font-family: fantasy; font-size: 20px;" />
+		<input
+			bind:value={$character.Name}
+			type="text"
+			id="name"
+			name="name"
+			style="font-family: fantasy; font-size: 20px;"
+		/>
 	</div>
 </div>
 

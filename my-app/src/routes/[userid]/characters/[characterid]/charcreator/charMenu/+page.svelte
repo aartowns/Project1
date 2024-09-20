@@ -1,96 +1,114 @@
 <script>
-	import First from "$lib/First.svelte";
-	import Second from "$lib/Second.svelte";
-	import Third from "$lib/Third.svelte";
-    import Fourth from "$lib/Fourth.svelte";
-    import Fifth from "$lib/Fifth.svelte";
-	import { writable } from "svelte/store";
+	import First from '$lib/First.svelte';
+	import Second from '$lib/Second.svelte';
+	import Third from '$lib/Third.svelte';
+	import Fourth from '$lib/Fourth.svelte';
+	import Fifth from '$lib/Fifth.svelte';
+	import Sixth from '$lib/Sixth.svelte';
+	import { writable } from 'svelte/store';
 
-     let state = 'first';
-    
-     let character = writable({
-        Level: 1,
-        Race: 'Dragonborn',
-        Class: 'Barbarian',
-        Background: 'Acolyte',
-        RolledHitpoints: 0,
-        Name: '',
-        ProficientSkills: [],
-        Strength: 1,
-        Dexterity: 1,
-        Constitution: 1,
-        Wisdom: 1,
-        Intelligence: 1,
-        Charisma: 1,
-        chosenFeats: [],
-        chosenSpells: [],
+	let state = 'first';
 
-
-        
-
-
-     });
-     character.subscribe((val)=>{
-        console.log(val);
-     })
-
-
-
+	let character = writable({
+		Level: 1,
+		Race: 'Dragonborn',
+		Class: 'Barbarian',
+		Background: 'Acolyte',
+		RolledHitpoints: 0,
+		Name: '',
+		ProficientSkills: [],
+		Strength: 1,
+		Dexterity: 1,
+		Constitution: 1,
+		Wisdom: 1,
+		Intelligence: 1,
+		Charisma: 1,
+		chosenFeats: [],
+		chosenSpells: []
+	});
+	character.subscribe((val) => {
+		console.log(val);
+	});
 </script>
 
 <div style="display:flex; justify-content:center; flex-direction: column;">
-<div style="display:flex; justify-content:center; flex-direction: row;">
-<button class="{state=='first'?'selected':''}" on:click={()=> {
-    state='first';
-}}>
-General Info
-</button>
-<button class="{state=='second'?'selected':''}" on:click={()=> {
-    state='second';
-}}>
-Skills
-</button>
-<button class="{state=='third'?'selected':''}" on:click={()=> {
-    state='third';
-}}>
-Atributes
-</button>
-<button class="{state=='fourth'?'selected':''}" on:click={()=> {
-    state='fourth';
-}}>
-Feats
-</button>
-<button class="{state=='fifth'?'selected':''}" on:click={()=> {
-    state='fifth';
-}}>
-Spells
-</button>
-</div>
+	<div style="display:flex; justify-content:center; flex-direction: row;">
+		<button
+			class={state == 'first' ? 'selected' : ''}
+			on:click={() => {
+				state = 'first';
+			}}
+		>
+			General Info
+		</button>
+		<button
+			class={state == 'second' ? 'selected' : ''}
+			on:click={() => {
+				state = 'second';
+			}}
+		>
+			Skills
+		</button>
+		<button
+			class={state == 'third' ? 'selected' : ''}
+			on:click={() => {
+				state = 'third';
+			}}
+		>
+			Atributes
+		</button>
+		<button
+			class={state == 'fourth' ? 'selected' : ''}
+			on:click={() => {
+				state = 'fourth';
+			}}
+		>
+			Feats
+		</button>
+		<button
+			class={state == 'fifth' ? 'selected' : ''}
+			on:click={() => {
+				state = 'fifth';
+			}}
+		>
+			Spells
+		</button>
+		<button
+			class={state == 'sixth' ? 'selected' : ''}
+			on:click={() => {
+				state = 'sixth';
+			}}
+		>
+			Character
+		</button>
+	</div>
 
-<div >
-    {#if state=='fifth'}
-      <Fifth character={character}></Fifth>
-      {:else if state=='second'}
-      <Second character={character}></Second> 
-      {:else if state=='third'}
-      <Third character={character}></Third>
-      {:else if state=='fourth'}
-      <Fourth character={character}></Fourth>
-      {:else}
-      <First character={character}></First>
-    {/if}
-</div>
+	<div>
+		{#if state == 'sixth'}
+			<Sixth {character}></Sixth>
+		{:else if state == 'second'}
+			<Second {character}></Second>
+		{:else if state == 'third'}
+			<Third {character}></Third>
+		{:else if state == 'fourth'}
+			<Fourth {character}></Fourth>
+		{:else if state == 'fifth'}
+			<Fifth {character}></Fifth>
+		{:else}
+			<First {character}></First>
+		{/if}
+	</div>
 </div>
 
 <style>
-    button {
-        width: 20%;
-        height: 4em;
-        font-size: 16pt;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        background-color: var(--button-bg);
-    }
-    .selected {
-        background-color: var(--button-selected);
-    }
+	button {
+		width: 20%;
+		height: 4em;
+		font-size: 16pt;
+		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		background-color: var(--button-bg);
+	}
+	.selected {
+		background-color: var(--button-selected);
+	}
 </style>

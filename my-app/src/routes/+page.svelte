@@ -53,19 +53,6 @@
 </div>
 
 <style>
-	.roll {
-		background-color: var(--button-selected);
-		border: none;
-		color: white;
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 20px 0;
-		cursor: pointer;
-	}
-
 	.wrapper {
 		display: flex;
 		flex-wrap: wrap;
