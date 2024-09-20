@@ -1,24 +1,29 @@
 <script>
-	import Myspellitem from '$lib/Myspellitem.svelte';
+	import Mylistitem from '$lib/Mylistitem.svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+	import { get } from 'svelte/store';
 
 	export let character;
 
-	// @ts-ignore
 	let spells = writable([]);
-	// @ts-ignore
+
 	let selectedSpells = writable([]);
 
 	/**
-	 * @type {{ addEventListener: (arg0: string, arg1: () => void) => void; value: string; }}
+	 * @type {HTMLInputElement}
 	 */
 	let search;
 
+	let filteredSpells = writable([]);
+
 	onMount(() => {
 		getSpells();
-        search.addEventListener('input', () => {
-			filterSpells(search.value);
+		spells.subscribe((allSpells) => {
+			filteredSpells.set(allSpells);
+		});
+		search.addEventListener('input', () => {
+			filterSpells();
 		});
 	});
 
@@ -60,16 +65,6 @@
 					uniqueSpellsMap.set(key, {
 						name: spell.name,
 						description: spell.desc || 'No description available.',
-						distance:
-							spell.range === 0.1 || spell.range === 0
-								? spell.range_text
-								: spell.range
-									? spell.range + ' Feet'
-									: 'Unknown',
-						materials: Array.isArray(spell.material_specified)
-							? spell.material_specified.join(', ')
-							: spell.material_specified || 'None',
-						school: spell.school?.name || 'None',
 						level: spell.level || 0
 					});
 				}
@@ -77,73 +72,108 @@
 
 			// @ts-ignore
 			spells.set(Array.from(uniqueSpellsMap.values()));
+
+			// @ts-ignore
+			filteredSpells.set(Array.from(uniqueSpellsMap.values()));
 		} catch (error) {
 			console.error('Error fetching data:', error);
-			alert('Failed to load spells. Please try again later.');
 		}
 	}
 
 	/**
-	 * @param {{ detail: { isSelected: any; }; target: any; }} event
+	 * @param {CustomEvent<any>} event
 	 */
 	function handleSelectToggled(event) {
-		const { isSelected } = event.detail;
+		const { isSelected, name } = event.detail;
+
 		if (isSelected) {
 			// @ts-ignore
-			selectedSpells.update((current) => [...current, event.target]);
+			selectedSpells.update((current) => {
+				const spell = $spells.find((spell) => spell.name === name);
+				// @ts-ignore
+				if (spell && !current.includes(spell)) {
+					return [...current, spell];
+				}
+				return current;
+			});
 		} else {
-			selectedSpells.update((current) => current.filter((spell) => spell !== event.target));
+			selectedSpells.update((current) => {
+				// @ts-ignore
+				return current.filter((spell) => spell.name !== name);
+			});
 		}
+
+		onChangeSpell();
+	}
+
+	function onChangeSpell() {
+		selectedSpells.subscribe((spells) => {
+			$character.chosenSpells = spells;
+		})();
 	}
 
 	/**
-	 * @param {string} searchText
+	 * @type {string}
 	 */
-	function filterSpells(searchText) {
+	let searchText;
+	function filterSpells() {
 		const lowerCaseText = searchText.toLowerCase();
-		$spells = $spells.map((spell) => {
-			function matches() {
-				const nameMatch = spell.name.toLowerCase().includes(lowerCaseText);
-				const descMatch = spell.desc?.toLowerCase().includes(lowerCaseText);
-				return nameMatch || descMatch;
-			}
-            spells = matches()
-            return spells
+		console.log(lowerCaseText);
+		/**
+		 * @type {any[]}
+		 */
+		const allSpells = get(spells);
+
+		const filtered = allSpells.filter((spell) => {
+			const nameMatch = spell.name.toLowerCase().includes(lowerCaseText);
+			const descMatch = spell.description.toLowerCase().includes(lowerCaseText);
+			return nameMatch || descMatch;
 		});
+		console.log('filtered spells:', filtered);
+
+		// @ts-ignore
+		filteredSpells.set(filtered);
 	}
 </script>
 
 <div class="wrapper">
+	<div class="selectedSpells">
+		<h1>Selected Spells</h1>
+		<ul id="selected">
+			{#each $selectedSpells as spell}
+				<Mylistitem
+					name={spell.name}
+					desc={spell.description}
+					isSelected={true}
+					on:selectToggled={(event) => handleSelectToggled(event)}
+				/>
+			{/each}
+		</ul>
+	</div>
+
 	{#each [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as level}
 		<div class="spellLevel">
-			<h1>Spell Level {level === 0 ? 'Cantrips' : `Spell Level ${level}`}</h1>
+			<h1>{level === 0 ? 'Cantrips' : `Spell Level ${level}`}</h1>
 			<input
-                bind:this={search}
+				bind:this={search}
+				bind:value={searchText}
 				type="text"
 				class="searchInput"
 				placeholder={`Search Level ${level} spells by name or description...`}
+				on:input={() => filterSpells()}
 			/>
 			<div class="spells" id={`spellLvl${level}`}>
-				{#each $spells.filter((spell) => spell.level === level) as spell}
-					<Myspellitem
+				{#each $filteredSpells.filter((spell) => spell.level === level) as spell}
+					<Mylistitem
 						name={spell.name}
 						desc={spell.description}
 						isSelected={false}
-						on:selectToggled={handleSelectToggled}
+						on:selectToggled={(event) => handleSelectToggled(event)}
 					/>
 				{/each}
 			</div>
 		</div>
 	{/each}
-</div>
-
-<div class="selectedSpells">
-	<h1>Selected Spells</h1>
-	<ul id="selected">
-		{#each $selectedSpells as spell}
-			<li>{spell.name}</li>
-		{/each}
-	</ul>
 </div>
 
 <style>

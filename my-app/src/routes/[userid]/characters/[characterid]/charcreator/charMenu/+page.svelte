@@ -1,9 +1,9 @@
 <script>
 	import First from "$lib/First.svelte";
-	import Five from "$lib/Five.svelte";
-	import Four from "$lib/Four.svelte";
 	import Second from "$lib/Second.svelte";
 	import Third from "$lib/Third.svelte";
+    import Fourth from "$lib/Fourth.svelte";
+    import Fifth from "$lib/Fifth.svelte";
 	import { writable } from "svelte/store";
 
      let state = 'first';
@@ -23,6 +23,7 @@
         Intelligence: 1,
         Charisma: 1,
         chosenFeats: [],
+        chosenSpells: [],
 
 
         
@@ -59,22 +60,22 @@ Atributes
 }}>
 Feats
 </button>
-<button class="{state=='five'?'selected':''}" on:click={()=> {
-    state='five';
+<button class="{state=='fifth'?'selected':''}" on:click={()=> {
+    state='fifth';
 }}>
 Spells
 </button>
 </div>
 
 <div >
-    {#if state=='five'}
-      <Five character={character}></Five>
+    {#if state=='fifth'}
+      <Fifth character={character}></Fifth>
       {:else if state=='second'}
       <Second character={character}></Second> 
       {:else if state=='third'}
       <Third character={character}></Third>
       {:else if state=='fourth'}
-      <Four character={character}></Four>
+      <Fourth character={character}></Fourth>
       {:else}
       <First character={character}></First>
     {/if}

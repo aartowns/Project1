@@ -2,7 +2,7 @@
 	import Mylistitem from '$lib/Mylistitem.svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-    export let character;
+	export let character;
 
 	/**
 	 * @type {HTMLInputElement}
@@ -48,11 +48,11 @@
 	}
 
 	function onChangeFeat() {
-    $character.chosenFeats = getSelectedFeats().map((feat) =>({
-        name: feat.name,
-        description: feat.desc
-    }));
-}
+		$character.chosenFeats = getSelectedFeats().map((feat) => ({
+			name: feat.name,
+			description: feat.desc
+		}));
+	}
 
 	function getSelectedFeats() {
 		return $featsArray.filter((feat) => {
@@ -88,32 +88,36 @@
 
 <div style="display: flex; flex-direction: row; text-align: center;">
 	<div class="container">
-		<div>
-			<h1>Selected Feats</h1>
-			<div>
-				<ul bind:this={selectedFeats} id="selected">
-					{#each $featsArray as feat}
-						{#if feat.isSelected}
-							<li>
-								<Mylistitem
-									name={feat.name}
-									desc={feat.desc}
-									isSelected={feat.isSelected}
-									on:selectToggled={(ev) => {
-										feat.isSelected = ev.detail.isSelected;
-										onChangeFeat();
-									}}
-								></Mylistitem>
-							</li>
-						{/if}
-					{/each}
-				</ul>
+		<div class="scrollable-container" style="margin-top: 20px">
+			<div
+				style="background-color: var(--button-bg); display: flex; flex-direction: column; justify-content: center; "
+			>
+				<h1>Selected Feats</h1>
+				<div style="text-align: center; justify-content: center; margin: 10px;">
+					<ul bind:this={selectedFeats} id="selected">
+						{#each $featsArray as feat}
+							{#if feat.isSelected}
+								<li>
+									<Mylistitem
+										name={feat.name}
+										desc={feat.desc}
+										isSelected={feat.isSelected}
+										on:selectToggled={(ev) => {
+											feat.isSelected = ev.detail.isSelected;
+											onChangeFeat();
+										}}
+									></Mylistitem>
+								</li>
+							{/if}
+						{/each}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="scrollable-container">
-			<div style="justify-content: center;">
+			<div style="justify-content: center; background-color: var(--button-bg); align-items:center ">
 				<h1>All Feats</h1>
 				<input
 					bind:this={search}
@@ -122,7 +126,7 @@
 					name="feat"
 					id="searchField"
 				/>
-				<div style="text-align: center;">
+				<div style="text-align: center; justify-content: center; margin: 10px;">
 					<ul bind:this={allFeats} id="resultList">
 						{#each $featsArray as feat}
 							{#if !feat.isSelected && feat.isShown}
