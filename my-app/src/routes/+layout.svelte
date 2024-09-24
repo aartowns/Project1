@@ -9,7 +9,7 @@
         <a class="pageLink" href="/[userid]/characters/[characterid]/charcreator/charMenu">Character Creator</a>
     </div>
     <div class="menuOption">
-        <a class="pageLink" href="../Char">Characters</a>
+        <a class="pageLink" href="/[userid]/characters/[characterid]/charList">Characters</a>
     </div>
 </div>
 
@@ -57,7 +57,6 @@
     }
 
     .pageLink:hover {
-        text-decoration: underline;
         color: cyan;
     }
 </style>

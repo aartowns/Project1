@@ -111,4 +111,7 @@
 	.selected {
 		background-color: var(--button-selected);
 	}
+	button:hover {
+		color: cyan;
+	}
 </style>
