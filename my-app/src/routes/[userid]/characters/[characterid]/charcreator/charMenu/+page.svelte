@@ -5,6 +5,7 @@
 	import Fourth from '$lib/Fourth.svelte';
 	import Fifth from '$lib/Fifth.svelte';
 	import Sixth from '$lib/Sixth.svelte';
+	import Seventh from '$lib/Seventh.svelte';
 	import { writable } from 'svelte/store';
 
 	let state = 'first';
@@ -14,6 +15,7 @@
 		Race: 'Dragonborn',
 		Class: 'Barbarian',
 		Background: 'Acolyte',
+		Benefits: [],
 		RolledHitpoints: 0,
 		Name: '',
 		ProficientSkills: [],
@@ -39,7 +41,7 @@
 				state = 'first';
 			}}
 		>
-			General Info
+			<strong>General Info</strong>
 		</button>
 		<button
 			class={state == 'second' ? 'selected' : ''}
@@ -47,7 +49,7 @@
 				state = 'second';
 			}}
 		>
-			Skills
+			<strong>Background</strong>
 		</button>
 		<button
 			class={state == 'third' ? 'selected' : ''}
@@ -55,7 +57,7 @@
 				state = 'third';
 			}}
 		>
-			Atributes
+			<strong>Skills</strong>
 		</button>
 		<button
 			class={state == 'fourth' ? 'selected' : ''}
@@ -63,7 +65,7 @@
 				state = 'fourth';
 			}}
 		>
-			Feats
+			<strong>Atributes</strong>
 		</button>
 		<button
 			class={state == 'fifth' ? 'selected' : ''}
@@ -71,7 +73,7 @@
 				state = 'fifth';
 			}}
 		>
-			Spells
+			<strong>Feats</strong>
 		</button>
 		<button
 			class={state == 'sixth' ? 'selected' : ''}
@@ -79,13 +81,21 @@
 				state = 'sixth';
 			}}
 		>
-			Character
+			<strong>Spells</strong>
+		</button>
+		<button
+			class={state == 'seventh' ? 'selected' : ''}
+			on:click={() => {
+				state = 'seventh';
+			}}
+		>
+			<strong>Character</strong>
 		</button>
 	</div>
 
 	<div>
-		{#if state == 'sixth'}
-			<Sixth {character}></Sixth>
+		{#if state == 'seventh'}
+			<Seventh {character}></Seventh>
 		{:else if state == 'second'}
 			<Second {character}></Second>
 		{:else if state == 'third'}
@@ -94,6 +104,8 @@
 			<Fourth {character}></Fourth>
 		{:else if state == 'fifth'}
 			<Fifth {character}></Fifth>
+		{:else if state == 'sixth'}
+			<Sixth {character}></Sixth>
 		{:else}
 			<First {character}></First>
 		{/if}
@@ -105,7 +117,7 @@
 		width: 20%;
 		height: 4em;
 		font-size: 16pt;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);
 	}
 	.selected {

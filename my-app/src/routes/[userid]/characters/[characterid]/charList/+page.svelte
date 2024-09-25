@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import Char1 from '$lib/Char1.svelte';
 	import { writable } from 'svelte/store';
 
@@ -7,6 +9,7 @@
 		Race: 'Dragonborn',
 		Class: 'Barbarian',
 		Background: 'Acolyte',
+		Benefits: [],
 		RolledHitpoints: 0,
 		Name: '',
 		ProficientSkills: [],
@@ -32,7 +35,7 @@
 				console.log(state);
 			}}
 		>
-			Character 1
+			<strong>Character 1</strong>
 		</button>
 		<button
 			class={state == 2 ? 'selected' : ''}
@@ -41,7 +44,7 @@
 				console.log(state);
 			}}
 		>
-			Character 2
+			<strong>Character 2</strong>
 		</button>
 		<button
 			class={state == 3 ? 'selected' : ''}
@@ -50,7 +53,7 @@
 				console.log(state);
 			}}
 		>
-			Character 3
+			<strong>Character 3</strong>
 		</button>
 		<button
 			class={state == 4 ? 'selected' : ''}
@@ -59,7 +62,7 @@
 				console.log(state);
 			}}
 		>
-			Character 4
+			<strong>Character 4</strong>
 		</button>
 		<button
 			class={state == 5 ? 'selected' : ''}
@@ -68,7 +71,7 @@
 				console.log(state);
 			}}
 		>
-			Character 5
+			<strong>Character 5</strong>
 		</button>
 	</div>
 
@@ -84,7 +87,7 @@
 		width: 20%;
 		height: 4em;
 		font-size: 16pt;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);
 	}
 	.selected {

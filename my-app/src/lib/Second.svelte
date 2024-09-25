@@ -1,166 +1,70 @@
 <script>
-	// @ts-ignore
-	import { json } from '@sveltejs/kit';
+    import { onMount } from 'svelte';
 	export let character;
+	/**
+	 * @type {any[]}
+	 */
+	let backgrounds = []; 
+	
+	/**
+	 * @type {{ benefits: any; } | null}
+	 */
+	let selectedBackground = null; 
 
-	const onSkillChanged = (
-		/** @type {Event & { currentTarget: EventTarget & HTMLInputElement; }} */ event
-	) => {
-		// @ts-ignore
-		const skillId = event.target.id;
-		// @ts-ignore
-		const isChecked = event.target.checked;
-		// @ts-ignore
-		console.log(skillId, isChecked);
-		// @ts-ignore
-		if (isChecked) {
-			// @ts-ignore
-			if (!$character.ProficientSkills.includes(skillId)) {
-				// @ts-ignore
-				$character.ProficientSkills.push(skillId);
+	onMount(async () => {
+		try {
+			const response = await fetch('https://api.open5e.com/v2/backgrounds/');
+			if (!response.ok) throw new Error('Failed to fetch backgrounds');
+			const data = await response.json();
+			backgrounds = data.results; 
+			
+			if (backgrounds.length > 0) {
+				selectedBackground = backgrounds[0]; 
 			}
-		} else {
-			// @ts-ignore
-			if ($character.ProficientSkills.includes(skillId)) {
-				// @ts-ignore
-				$character.ProficientSkills = $character.ProficientSkills.filter(
-					(/** @type {any} */ skill) => skill !== skillId
-				);
-			}
+		} catch (error) {
+			console.error('Error fetching backgrounds:', error);
 		}
-		// @ts-ignore
-		console.log($character);
+	});
+
+	const onBackgroundChange = (/** @type {{ target: { value: any; }; }} */ event) => {
+		const selected = backgrounds.find(bg => bg.name === event.target.value);
+		$character.Background = selected ? selected.name : ''; 
+		$character.Benefits = selected ? selected.benefits : []; 
+		selectedBackground = selected; 
 	};
 </script>
-
 <div class="wrapper">
-	<div class="skill">
-		<label class="label" for="athletics"
-			>Athletics
-			<input on:input={(e) => onSkillChanged(e)} id="athletics" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="acrobatics"
-			>Acrobatics
-			<input on:input={(e) => onSkillChanged(e)} id="acrobatics" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="sleight-of-hand"
-			>Sleight of Hand
-			<input on:input={(e) => onSkillChanged(e)} id="sleight-of-hand" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="stealth"
-			>Stealth
-			<input on:input={(e) => onSkillChanged(e)} id="stealth" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="arcana"
-			>Arcana
-			<input on:input={(e) => onSkillChanged(e)} id="arcana" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="history"
-			>History
-			<input on:input={(e) => onSkillChanged(e)} id="history" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="investigation"
-			>Investigation
-			<input on:input={(e) => onSkillChanged(e)} id="investigation" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="nature"
-			>Nature
-			<input on:input={(e) => onSkillChanged(e)} id="nature" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="religion"
-			>Religion
-			<input on:input={(e) => onSkillChanged(e)} id="religion" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="animal-handling"
-			>Animal Handling
-			<input on:input={(e) => onSkillChanged(e)} id="animal-handling" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="insight"
-			>Insight
-			<input on:input={(e) => onSkillChanged(e)} id="insight" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="medicine"
-			>Medicine
-			<input on:input={(e) => onSkillChanged(e)} id="medicine" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="perception"
-			>Perception
-			<input on:input={(e) => onSkillChanged(e)} id="perception" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="survival"
-			>Survival
-			<input on:input={(e) => onSkillChanged(e)} id="survival" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="deception"
-			>Deception
-			<input on:input={(e) => onSkillChanged(e)} id="deception" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="intimidation"
-			>Intimidation
-			<input on:input={(e) => onSkillChanged(e)} id="intimidation" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="performance"
-			>Performance
-			<input on:input={(e) => onSkillChanged(e)} id="performance" type="checkbox" />
-		</label>
-	</div>
-	<div class="skill">
-		<label class="label" for="persuasion"
-			>Persuasion
-			<input on:input={(e) => onSkillChanged(e)} id="persuasion" type="checkbox" />
-		</label>
-	</div>
+<div class="background">
+    <label class="labelPg1" for="Background">Background:</label>
+    <select
+        bind:value={$character.Background}
+        name="Background"
+        id="Background"
+        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+        on:change={onBackgroundChange}
+    >
+        {#each backgrounds as background}
+            <option value={background.name} class="option">{background.name}</option>
+        {/each}
+    </select>
 </div>
-
+{#if selectedBackground}
+    <div class="outside-div">
+        <h3>Description:</h3>
+    <div class="background-description">
+        <ul>
+            {#each selectedBackground.benefits as benefit}
+                <li><strong>{benefit.name}:</strong> {benefit.desc}</li>
+            {/each}
+        </ul>
+    </div>
+</div>
+{/if}
+</div>
 <style>
-	.wrapper {
+    .background	{
 		display: flex;
-		flex-wrap: wrap;
-		background-color: #d9d9d9;
-		width: 100vw;
-		height: 100%;
-		justify-content: center;
-		align-items: center;
-		gap: 20px;
-		margin: 0;
-		flex-direction: row;
-	}
-
-	.skill {
-		display: flex;
-		flex: wrap;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		min-width: 20em;
@@ -172,8 +76,32 @@
 		padding: 0;
 		border: solid black 0.5px;
 	}
-
-	.label {
-		font-size: 20px;
+    .wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		background-color: #d9d9d9;
+		width: 100vw;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		margin: 0;
+		flex-direction: row;
 	}
+    .background-description {
+        height: 400px;
+        width: 80%;
+        overflow-y: auto;
+        background-color: #d9d9d9;
+    }
+    .outside-div {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 500px;
+        background-color: var(--button-bg);
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+    }
 </style>
