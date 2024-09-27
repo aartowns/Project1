@@ -1,259 +1,246 @@
 <script>
-	/**
-	 * @type {any}
-	 */
+	import Mylistitem from '$lib/Mylistitem.svelte';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
+	import { get } from 'svelte/store';
+
 	export let character;
-	let slot = 1;
-	let showSkills = false;
-	let showFeats = false;
-	let showSpells = false;
-	let showBackground = false;
-	function saveCharacter() {
-		const characterData = JSON.stringify($character);
-		console.log(characterData);
-		localStorage.setItem('character' + slot, characterData);
-		alert('Character Saved!');
+
+	let spells = writable([]);
+
+	let selectedSpells = writable([]);
+
+	/**
+	 * @type {HTMLInputElement}
+	 */
+	let search;
+
+	let filteredSpells = writable([]);
+
+	onMount(() => {
+		getSpells();
+		spells.subscribe((allSpells) => {
+			filteredSpells.set(allSpells);
+		});
+		search.addEventListener('input', () => {
+			filterSpells();
+		});
+	});
+
+	/**
+	 * @param {string} url
+	 */
+	async function fetchAllSpells(url) {
+		/**
+		 * @type {any[]}
+		 */
+		let allSpells = [];
+		let nextPageUrl = url;
+
+		while (nextPageUrl) {
+			try {
+				const response = await fetch(nextPageUrl);
+				const data = await response.json();
+				allSpells = allSpells.concat(data.results);
+				nextPageUrl = data.next;
+			} catch (error) {
+				console.error('Error fetching data from page:', nextPageUrl, error);
+				break;
+			}
+		}
+
+		return allSpells;
+	}
+
+	async function getSpells() {
+		try {
+			const apiUrl = 'https://api.open5e.com/v2/spells/';
+			const allSpells = await fetchAllSpells(apiUrl);
+
+			const uniqueSpellsMap = new Map();
+
+			allSpells.forEach((spell) => {
+				const key = spell.name.toLowerCase();
+				if (!uniqueSpellsMap.has(key)) {
+					uniqueSpellsMap.set(key, {
+						name: spell.name,
+						description: spell.desc || 'No description available.',
+						level: spell.level || 0
+					});
+				}
+			});
+
+			// @ts-ignore
+			spells.set(Array.from(uniqueSpellsMap.values()));
+
+			// @ts-ignore
+			filteredSpells.set(Array.from(uniqueSpellsMap.values()));
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+	/**
+	 * @param {CustomEvent<any>} event
+	 */
+	function handleSelectToggled(event) {
+		const { isSelected, name } = event.detail;
+
+		if (isSelected) {
+			// @ts-ignore
+			selectedSpells.update((current) => {
+				const spell = $spells.find((spell) => spell.name === name);
+				// @ts-ignore
+				if (spell && !current.includes(spell)) {
+					return [...current, spell];
+				}
+				return current;
+			});
+		} else {
+			selectedSpells.update((current) => {
+				// @ts-ignore
+				return current.filter((spell) => spell.name !== name);
+			});
+		}
+
+		onChangeSpell();
+	}
+
+	function onChangeSpell() {
+		selectedSpells.subscribe((spells) => {
+			$character.chosenSpells = spells;
+		})();
+	}
+
+	/**
+	 * @type {string}
+	 */
+	let searchText;
+	function filterSpells() {
+		const lowerCaseText = searchText.toLowerCase();
+		console.log(lowerCaseText);
+		/**
+		 * @type {any[]}
+		 */
+		const allSpells = get(spells);
+
+		const filtered = allSpells.filter((spell) => {
+			const nameMatch = spell.name.toLowerCase().includes(lowerCaseText);
+			const descMatch = spell.description.toLowerCase().includes(lowerCaseText);
+			return nameMatch || descMatch;
+		});
+		console.log('filtered spells:', filtered);
+
+		// @ts-ignore
+		filteredSpells.set(filtered);
 	}
 </script>
 
 <div class="wrapper">
-	<div class="save">
-		<div class="save-slot">
-			<select
-				style="width:100%; background-color: var(--button-bg); border: solid black 1px;"
-				name="slot"
-				id="slot"
-				bind:value={slot}
-			>
-				<option value={1}>1</option>
-				<option value={2}>2</option>
-				<option value={3}>3</option>
-				<option value={4}>4</option>
-				<option value={5}>5</option>
-			</select>
-		</div>
-		<div class="save-button">
-			<button
-				style="margin:0%; width: 100%;
-height: 100%;
-font-size: 16pt;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-background-color: var(--button-bg);"
-				on:click={saveCharacter}
-			>
-				Save Character</button
-			>
-		</div>
+	<div class="selectedSpells">
+		<h1>Selected Spells</h1>
+		<ul id="selected">
+			{#each $selectedSpells as spell}
+				<Mylistitem
+					name={spell.name}
+					desc={spell.description}
+					isSelected={true}
+					on:selectToggled={(event) => handleSelectToggled(event)}
+				/>
+			{/each}
+		</ul>
 	</div>
-	<div class="header">
-		<h2>Name: {$character.Name}</h2>
-		<h2>Level: {$character.Level}</h2>
-		<h2>Race: {$character.Race}</h2>
-		<h2>Class: {$character.Class}</h2>
-		<h2>Hitpoints: {$character.RolledHitpoints}</h2>
-	</div>
-	<div class="attributes">
-		<h2>Strength: {$character.Strength}</h2>
-		<h2>Dexterity: {$character.Dexterity}</h2>
-		<h2>Constitution: {$character.Constitution}</h2>
-		<h2>Intelligence: {$character.Intelligence}</h2>
-		<h2>Wisdom: {$character.Wisdom}</h2>
-		<h2>Charisma: {$character.Charisma}</h2>
-	</div>
-	<div class="buttons">
-		<div class="background">
-			<button
-				on:click={() => (showBackground = !showBackground)}
-				style="margin:0%; width: 100%;
-    height: 100%;
-    font-size: 16pt;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: var(--button-bg);">Background</button
-			>
-			{#if showBackground}
-				<div class="background-content">
-					<h2>{$character.Background}</h2>
-					<h3>Description:</h3>
-					<ul>
-						{#each $character.Benefits as benefit}
-							<li><strong>{benefit.name}: </strong>{benefit.desc}</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
+
+	{#each [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as level}
+		<div class="spellLevel">
+			<h1>{level === 0 ? 'Cantrips' : `Spell Level ${level}`}</h1>
+			<input
+				bind:this={search}
+				bind:value={searchText}
+				type="text"
+				class="searchInput"
+				placeholder={`Search Level ${level} spells by name or description...`}
+				on:input={() => filterSpells()}
+			/>
+			<div class="spells" id={`spellLvl${level}`}>
+				{#each $filteredSpells.filter((spell) => spell.level === level) as spell}
+					<Mylistitem
+						name={spell.name}
+						desc={spell.description}
+						isSelected={false}
+						on:selectToggled={(event) => handleSelectToggled(event)}
+					/>
+				{/each}
+			</div>
 		</div>
-		<div class="skills">
-			<button
-				on:click={() => (showSkills = !showSkills)}
-				style="margin:0%; width: 100%;
-    height: 100%;
-    font-size: 16pt;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: var(--button-bg);">Skills</button
-			>
-			{#if showSkills}
-				<div class="skill-content">
-					<ul>
-						{#each $character.ProficientSkills as skill}
-							<li><strong>{skill}</strong></li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
-		<div class="feats">
-			<button
-				on:click={() => (showFeats = !showFeats)}
-				style="margin:0%; width: 100%;
-		height: 100%;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		background-color: var(--button-bg);">Feats</button
-			>
-			{#if showFeats}
-				<div class="feat-content">
-					<ul>
-						{#each $character.chosenFeats as feat}
-							<li><strong>{feat.name}</strong></li>
-							<p>{feat.description}</p>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
-		<div class="spells">
-			<button
-				on:click={() => (showSpells = !showSpells)}
-				style="margin:0%; width: 100%;
-height: 4em;
-font-size: 16pt;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-background-color: var(--button-bg);">Spells</button
-			>
-			{#if showSpells}
-				<div class="spell-content">
-					<ul>
-						{#each $character.chosenSpells as spell}
-							<li><strong>{spell.name}</strong></li>
-							<p>{spell.description}</p>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
-	</div>
+	{/each}
 </div>
 
 <style>
+	.spells {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		overflow-y: auto;
+		width: 700px;
+		height: auto;
+		flex-wrap: nowrap;
+	}
 	.wrapper {
-		background-color: #d9d9d9;
-		border: var(--button-selected) 5px solid;
-		height: 100vh;
-	}
-
-	.header {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	h2 {
-		padding-right: 30px;
-	}
-
-	.attributes {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.buttons {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		justify-content: center;
-		width: 100%;
+		align-items: center;
+		background-color: #d9d9d9;
+		width: 100vw;
+		height: 100%;
+		margin: 0;
 	}
 
-	.background {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		max-height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	.searchInput {
+		width: 80%;
+		max-width: 600px;
+		padding: 8px;
+		box-sizing: border-box;
 	}
 
-	.background-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.spells {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.skills {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.feats {
-		padding-top: 20px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.save {
+	.spellLevel {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
-		flex-direction: column-reverse;
+		align-items: center;
+		width: 700px;
+		height: 300px;
+		background-color: var(--button-bg);
+		margin: 10px;
+		padding: 10px;
+		border: solid black 0.5px;
+	}
+
+	.selectedSpells {
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 		width: 100%;
-	}
-
-	.save-button {
 		padding: 20px;
-		padding-bottom: 0px;
-		margin: 0px;
-		width: 20%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);
+		border: solid black 0.5px;
+		box-sizing: border-box;
 	}
 
-	.save-slot {
-		padding-bottom: 20px;
-		width: 5%;
+	.selectedSpells ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		width: 100%;
 	}
 
-	.spell-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.feat-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.skill-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	button:hover {
-		color: cyan;
+	.selectedSpells h1 {
+		margin: 0;
+		padding: 10px 0;
+		text-align: center;
+		width: 100%;
 	}
 </style>

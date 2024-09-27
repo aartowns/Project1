@@ -6,6 +6,7 @@
 	import Fifth from '$lib/Fifth.svelte';
 	import Sixth from '$lib/Sixth.svelte';
 	import Seventh from '$lib/Seventh.svelte';
+	import Eighth from '$lib/Eighth.svelte';
 	import { writable } from 'svelte/store';
 
 	let state = 'first';
@@ -13,7 +14,9 @@
 	let character = writable({
 		Level: 1,
 		Race: 'Dragonborn',
+		Traits: [],
 		Class: 'Barbarian',
+		ClassDesc: [],
 		Background: 'Acolyte',
 		Benefits: [],
 		RolledHitpoints: 0,
@@ -49,7 +52,7 @@
 				state = 'second';
 			}}
 		>
-			<strong>Background</strong>
+			<strong>Race & Class</strong>
 		</button>
 		<button
 			class={state == 'third' ? 'selected' : ''}
@@ -57,7 +60,7 @@
 				state = 'third';
 			}}
 		>
-			<strong>Skills</strong>
+			<strong>Background</strong>
 		</button>
 		<button
 			class={state == 'fourth' ? 'selected' : ''}
@@ -65,7 +68,7 @@
 				state = 'fourth';
 			}}
 		>
-			<strong>Atributes</strong>
+			<strong>Skills</strong>
 		</button>
 		<button
 			class={state == 'fifth' ? 'selected' : ''}
@@ -73,7 +76,7 @@
 				state = 'fifth';
 			}}
 		>
-			<strong>Feats</strong>
+			<strong>Attributes</strong>
 		</button>
 		<button
 			class={state == 'sixth' ? 'selected' : ''}
@@ -81,7 +84,7 @@
 				state = 'sixth';
 			}}
 		>
-			<strong>Spells</strong>
+			<strong>Feats</strong>
 		</button>
 		<button
 			class={state == 'seventh' ? 'selected' : ''}
@@ -89,13 +92,21 @@
 				state = 'seventh';
 			}}
 		>
+			<strong>Spells</strong>
+		</button>
+		<button
+			class={state == 'eighth' ? 'selected' : ''}
+			on:click={() => {
+				state = 'eighth';
+			}}
+		>
 			<strong>Character</strong>
 		</button>
 	</div>
 
 	<div>
-		{#if state == 'seventh'}
-			<Seventh {character}></Seventh>
+		{#if state == 'eighth'}
+			<Eighth {character}></Eighth>
 		{:else if state == 'second'}
 			<Second {character}></Second>
 		{:else if state == 'third'}
@@ -106,6 +117,8 @@
 			<Fifth {character}></Fifth>
 		{:else if state == 'sixth'}
 			<Sixth {character}></Sixth>
+		{:else if state == 'seventh'}
+			<Seventh {character}></Seventh>
 		{:else}
 			<First {character}></First>
 		{/if}

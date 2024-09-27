@@ -1,44 +1,10 @@
 <script>
-	import { onMount } from 'svelte';
 	export let character;
-	/**
-	 * @type {any[]}
-	 */
-	let backgrounds = []; // Array to hold the fetched backgrounds
-	/**
-	 * @type {{ desc: any; benefits: any; } | null}
-	 */
-	let selectedBackground = null; // To hold the currently selected background
 
-	onMount(async () => {
-		try {
-			const response = await fetch('https://api.open5e.com/v2/backgrounds/');
-			if (!response.ok) throw new Error('Failed to fetch backgrounds');
-			const data = await response.json();
-			backgrounds = data.results; // Assuming the API returns an object with a 'results' array
-			// Set the default selected background if any
-			if (backgrounds.length > 0) {
-				selectedBackground = backgrounds[0]; // Set the first background as default
-			}
-		} catch (error) {
-			console.error('Error fetching backgrounds:', error);
-		}
-	});
-
-	const onBackgroundChange = (/** @type {{ target: { value: any; }; }} */ event) => {
-		const selected = backgrounds.find(bg => bg.name === event.target.value);
-		$character.Background = selected ? selected.name : ''; // Update the character background
-		selectedBackground = selected; // Update selected background details
-	};
 	const onLevelChange = (/** @type {{ target: { value: any; }; }} */ event) => {
 		$character.Level = event.target.value;
 	};
-	const onRaceChange = (/** @type {{ target: { value: any; }; }} */ event) => {
-		$character.Race = event.target.value;
-	};
-	const onClassChange = (/** @type {{ target: { value: any; }; }} */ event) => {
-		$character.Class = event.target.value;
-	};
+	
 	const onHitPointChange = (/** @type {{ target: { value: any; }; }} */ event) => {
 		$character.RolledHitpoints = event.target.value;
 	};
@@ -78,47 +44,7 @@
 			<option class="option" value={20}>20</option>
 		</select>
 	</div>
-	<div class="createOptions">
-		<label class="labelPg1" for="Race">Race:</label>
-		<select
-			bind:value={$character.Race}
-			name="Race"
-			id="Race"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
-		>
-			<option value="Dragonborn" class="option">Dragonborn</option>
-			<option value="Dwarf" class="option">Dwarf</option>
-			<option value="Elf" class="option">Elf</option>
-			<option value="Gnome" class="option">Gnome</option>
-			<option value="Half-Elf" class="option">Half-Elf</option>
-			<option value="Half-Orc" class="option">Half-Orc</option>
-			<option value="Halfling" class="option">Halfling</option>
-			<option value="Human" class="option">Human</option>
-			<option value="Tiefling" class="option">Tiefling</option>
-		</select>
-	</div>
-	<div class="createOptions">
-		<label class="labelPg1" for="Class">Class:</label>
-		<select
-			bind:value={$character.Class}
-			name="Class"
-			id="Class"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
-		>
-			<option value="Barbarian" class="option">Barbarian</option>
-			<option value="Bard" class="option">Bard</option>
-			<option value="Cleric" class="option">Cleric</option>
-			<option value="Druid" class="option">Druid</option>
-			<option value="Fighter" class="option">Fighter</option>
-			<option value="Monk" class="option">Monk</option>
-			<option value="Paladin" class="option">Paladin</option>
-			<option value="Ranger" class="option">Ranger</option>
-			<option value="Rogue" class="option">Rogue</option>
-			<option value="Sorcerer" class="option">Sorcerer</option>
-			<option value="Warlock" class="option">Warlock</option>
-			<option value="Wizard" class="option">Wizard</option>
-		</select>
-	</div>
+	
 	<div class="createOptions" style="padding-left: 10px; padding-right: 5px;">
 		<label class="labelPg1" for="hitpoints" style="padding-right: 5px;">Rolled Hitpoints:</label>
 		<input
@@ -141,10 +67,11 @@
 	</div>
 </div>
 
+
 <style>
+
 	.wrapper {
 		display: flex;
-		flex-wrap: wrap;
 		background-color: #d9d9d9;
 		width: 100vw;
 		height: 100%;
@@ -153,6 +80,7 @@
 		gap: 20px;
 		margin: 0;
 		flex-direction: row;
+		flex-wrap: wrap;
 	}
 
 	.createOptions {
