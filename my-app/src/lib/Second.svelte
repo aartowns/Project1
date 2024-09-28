@@ -30,7 +30,8 @@
 				const data = await response.json();
 
 				if (data.results.length > 0) {
-					races = [...races, ...data.results];
+					const filteredRaces = data.results.filter((/** @type {{ is_subrace: any; }} */ race) => !race.is_subrace);
+					races = [...races, ...filteredRaces];
 					page++;
 				} else {
 					moreData = false;
@@ -46,21 +47,12 @@
 
 	onMount(async () => {
 		try {
-			let page = 1;
-			let moreData = true;
+			const response = await fetch('https://api.open5e.com/v1/classes/');
+			if (!response.ok) throw new Error('Failed to fetch classes');
+			const data = await response.json();
 
-			while (moreData) {
-				const response = await fetch('https://api.open5e.com/v1/classes/');
-				if (!response.ok) throw new Error('Failed to fetch classes');
-				const data = await response.json();
+			classes = data.results;
 
-				if (data.results.length > 0) {
-					classes = [...classes, ...data.results];
-					page++;
-				} else {
-					moreData = false;
-				}
-			}
 			if (classes.length > 0) {
 				selectedClass = classes[0];
 			}

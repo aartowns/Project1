@@ -1,4 +1,6 @@
+import { json } from '@sveltejs/kit';
+
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
-    return new Response();
+    return json({diceRollD20:15});
 };

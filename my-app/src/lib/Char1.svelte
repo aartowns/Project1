@@ -1,8 +1,11 @@
 <script>
+	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 
+	
+	
 	/**
-	 * @type {{ Name: any; Level: any; Race: any; Class: any; RolledHitpoints: any; Strength: any; Dexterity: any; Constitution: any; Intelligence: any; Wisdom: any; Charisma: any; Background: any; Benefits: any; ProficientSkills: any; chosenFeats: any; chosenSpells: any; }}
+	 * @type {{ Name: any; Level: any; Race: any; Class: any; Background: any; RolledHitpoints: any; Strength: any; Dexterity: any; Constitution: any; Intelligence: any; Wisdom: any; Charisma: any; Traits: any; ClassDesc: string; Benefits: any; ProficientSkills: any; chosenFeats: any; chosenSpells: any; }}
 	 */
 	let localCharacter;
 	/**
@@ -13,6 +16,8 @@
 	let showFeats = false;
 	let showSpells = false;
 	let showBackground = false;
+	let showRace = false;
+	let showClass = false;
 
 	function getCharacterInfo() {
 		const savedCharacter = localStorage.getItem('character' + slot);
@@ -26,6 +31,9 @@
 	onMount(() => {
 		getCharacterInfo();
 	});
+	const getClassDescription = (/** @type {string} */ desc) => marked(desc);
+	const getRaceDescription = (/** @type {string} */ desc) => marked(desc);
+	const getBackgroundDesc = (/** @type {string} */ desc) => marked(desc);
 </script>
 
 {#if localCharacter}
@@ -35,6 +43,7 @@
 			<h2>Level: {localCharacter.Level}</h2>
 			<h2>Race: {localCharacter.Race}</h2>
 			<h2>Class: {localCharacter.Class}</h2>
+			<h2>Background: {localCharacter.Background}</h2>
 			<h2>Hitpoints: {localCharacter.RolledHitpoints}</h2>
 		</div>
 		<div class="attributes">
@@ -46,6 +55,47 @@
 			<h2>Charisma: {localCharacter.Charisma}</h2>
 		</div>
 		<div class="buttons">
+			<div class="race">
+				<button
+					on:click={() => (showRace = !showRace)}
+					style="margin:0%; width: 100%;
+		height: 20%;
+		font-size: 16pt;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.Race}</button
+				>
+				{#if showRace}
+					<div class="option-description">
+						<h3>Description:</h3>
+						<ul>
+							{#each localCharacter.Traits as trait}
+							<p><strong>{trait.name}</strong></p>
+								<p>{@html getRaceDescription(trait.desc)}</p>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
+			<div class="class">
+				<button
+					on:click={() => (showClass = !showClass)}
+					style="margin:0%; width: 100%;
+		height: 20%;
+		font-size: 16pt;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.Class}</button
+				>
+				{#if showClass}
+					<div class="class-option">
+						<h3>Description:</h3>
+						<ul>
+							
+							<p>{@html getClassDescription(localCharacter.ClassDesc)}</p>
+							
+						</ul>
+					</div>
+				{/if}
+			</div>
 			<div class="background">
 				<button
 					on:click={() => (showBackground = !showBackground)}
@@ -53,15 +103,14 @@
 		height: 100%;
 		font-size: 16pt;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		background-color: var(--button-bg);"><strong>Background</strong></button
+		background-color: var(--button-bg);">{localCharacter.Background}</button
 				>
 				{#if showBackground}
 					<div class="background-content">
-						<h2>{localCharacter.Background}</h2>
 						<h3>Description:</h3>
 						<ul>
 							{#each localCharacter.Benefits as benefit}
-								<li><strong>{benefit.name}: </strong>{benefit.desc}</li>
+							<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
 							{/each}
 						</ul>
 					</div>
@@ -133,6 +182,32 @@
 	</div>
 	{/if}
 <style>
+	.class {
+		padding-top: 20px;
+		margin: 0px;
+		width: 25%;
+		height: 20em;
+		font-size: 16pt;
+		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+
+	.race {
+		padding-top: 20px;
+		margin: 0px;
+		width: 25%;
+		height: 20em;
+		font-size: 16pt;
+		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+	.option-description {
+		overflow-y: auto;
+		height: 20em;
+	}
+
+	.class-option {
+		overflow-y: auto;
+		height: 20em;
+	}
 	.wrapper {
 		background-color: #d9d9d9;
 		border: var(--button-selected) 5px solid;

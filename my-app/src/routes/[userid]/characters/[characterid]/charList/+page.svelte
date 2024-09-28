@@ -7,7 +7,9 @@
 	let localCharacter = writable({
 		Level: 1,
 		Race: 'Dragonborn',
+		Traits: [],
 		Class: 'Barbarian',
+		ClassDesc: [],
 		Background: 'Acolyte',
 		Benefits: [],
 		RolledHitpoints: 0,

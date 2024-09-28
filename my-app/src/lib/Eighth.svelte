@@ -1,9 +1,12 @@
 <script>
+	import { marked } from 'marked';
 	/**
 	 * @type {any}
 	 */
 	export let character;
 	let slot = 1;
+	let showClass = false;
+	let showRace = false;
 	let showSkills = false;
 	let showFeats = false;
 	let showSpells = false;
@@ -14,6 +17,9 @@
 		localStorage.setItem('character' + slot, characterData);
 		alert('Character Saved!');
 	}
+	const getBackgroundDesc = (/** @type {string} */ desc) => marked(desc);
+	const getClassDescription = (/** @type {string} */ desc) => marked(desc);
+	const getRaceDescription = (/** @type {string} */ desc) => marked(desc);
 </script>
 
 <div class="wrapper">
@@ -50,6 +56,7 @@ background-color: var(--button-bg);"
 		<h2>Level: {$character.Level}</h2>
 		<h2>Race: {$character.Race}</h2>
 		<h2>Class: {$character.Class}</h2>
+		<h2>Background: {$character.Background}</h2>
 		<h2>Hitpoints: {$character.RolledHitpoints}</h2>
 	</div>
 	<div class="attributes">
@@ -61,6 +68,47 @@ background-color: var(--button-bg);"
 		<h2>Charisma: {$character.Charisma}</h2>
 	</div>
 	<div class="buttons">
+		<div class="race">
+			<button
+				on:click={() => (showRace = !showRace)}
+				style="margin:0%; width: 100%;
+    height: 20%;
+    font-size: 16pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--button-bg);">{$character.Race}</button
+			>
+			{#if showRace}
+				<div class="option-description">
+					<h3>Description:</h3>
+					<ul>
+						{#each $character.Traits as trait}
+						<p><strong>{trait.name}</strong></p>
+							<p>{@html getRaceDescription(trait.desc)}</p>
+						{/each}
+					</ul>
+				</div>
+			{/if}
+		</div>
+		<div class="class">
+			<button
+				on:click={() => (showClass = !showClass)}
+				style="margin:0%; width: 100%;
+    height: 20%;
+    font-size: 16pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--button-bg);">{$character.Class}</button
+			>
+			{#if showClass}
+				<div class="class-option">
+					<h3>Description:</h3>
+					<ul>
+						
+						<p>{@html getClassDescription($character.ClassDesc)}</p>
+						
+					</ul>
+				</div>
+			{/if}
+		</div>
 		<div class="background">
 			<button
 				on:click={() => (showBackground = !showBackground)}
@@ -68,15 +116,14 @@ background-color: var(--button-bg);"
     height: 100%;
     font-size: 16pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: var(--button-bg);">Background</button
+    background-color: var(--button-bg);">{$character.Background}</button
 			>
 			{#if showBackground}
 				<div class="background-content">
-					<h2>{$character.Background}</h2>
 					<h3>Description:</h3>
 					<ul>
 						{#each $character.Benefits as benefit}
-							<li><strong>{benefit.name}: </strong>{benefit.desc}</li>
+						<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
 						{/each}
 					</ul>
 				</div>
@@ -145,6 +192,15 @@ background-color: var(--button-bg);">Spells</button
 </div>
 
 <style>
+	.option-description {
+		overflow-y: auto;
+		height: 20em;
+	}
+
+	.class-option {
+		overflow-y: auto;
+		height: 20em;
+	}
 	.wrapper {
 		background-color: #d9d9d9;
 		border: var(--button-selected) 5px solid;
@@ -190,6 +246,24 @@ background-color: var(--button-bg);">Spells</button
 	}
 
 	.spells {
+		padding-top: 20px;
+		margin: 0px;
+		width: 25%;
+		height: 20em;
+		font-size: 16pt;
+		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+
+	.class {
+		padding-top: 20px;
+		margin: 0px;
+		width: 25%;
+		height: 20em;
+		font-size: 16pt;
+		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+
+	.race {
 		padding-top: 20px;
 		margin: 0px;
 		width: 25%;
