@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: fantasy;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            padding: 20px;
+        }
+
+        .characterSheet {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border: solid var(--button-selected)
+        }
+
+        .section {
+            background: white;
+            padding: 15px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        .name, .feats, .spellsSheet, .equipment {
+            grid-column: span 2;
+        }
+
+        .attributes-combat-saves {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            grid-column: span 2;
+        }
+
+        .attribute, .combat-stat, .saving-throw {
+            flex: 1;
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0;
+        }
+
+        .attribute strong, .combat-stat strong, .saving-throw strong {
+            display: inline-block;
+            width: 100px;
+            font-size: 16px;
+        }
+
+        .skillOption {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .spellLevelSheet {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .spellLevelSheet ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spellLevelSheet li {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .feats ul, .equipment ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feats li, .equipment li {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .characterSheet {
+                grid-template-columns: 1fr;
+            }
+
+            .attributes-combat-saves {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <header>
+        <div class="header">
+            <a class="pageLink" href="../index.html">Home</a>
+        </div>
+    </header>
+    <div class="menu">
+        <div class="menuOption">
+            <a class="pageLink" href="../Charcreator">Character Creator</a>
+        </div>
+        <div class="menuOption">
+            <a class="pageLink" href="../Char">Characters</a>
+        </div>
+    </div>
+    <div class="nextBack">
+        <div class="back">
+            <a class="nextBackLink" href="../Char/">Back</a>
+        </div>
+        <div class="next">
+            <a class="nextBackLink" href="../name2/">Next</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="characterSheet">
+            <section class="name section" style="width: 1078px;">
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Level:</strong>[Level]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Class:</strong> [Class]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Player Name:</strong> [Your Name]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Background:</strong> [Background]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Race:</strong> [Race]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Alignment:</strong> [Alignment]</p>
+                <p style="padding-left: 10px; padding-right: 10px; font-size: 24px;"><strong>Experience Points:</strong> [XP]</p>
+            </section>
+            <section class="attributes-combat-saves section">
+                <section class="attributes">
+                    <h2>Attributes</h2>
+                    <div class="attribute">
+                        <strong>Strength:</strong> <span id="strength">10</span>
+                    </div>
+                    <div class="attribute">
+                        <strong>Dexterity:</strong> <span id="dexterity">10</span>
+                    </div>
+                    <div class="attribute">
+                        <strong>Constitution:</strong> <span id="constitution">10</span>
+                    </div>
+                    <div class="attribute">
+                        <strong>Intelligence:</strong> <span id="intelligence">10</span>
+                    </div>
+                    <div class="attribute">
+                        <strong>Wisdom:</strong> <span id="wisdom">10</span>
+                    </div>
+                    <div class="attribute">
+                        <strong>Charisma:</strong> <span id="charisma">10</span>
+                    </div>
+                </section>
+                <section class="combatStats">
+                    <h2>Combat Stats</h2>
+                    <div class="combat-stat">
+                        <strong>Armor Class (AC):</strong> <span id="ac">10</span>
+                    </div>
+                    <div class="combat-stat">
+                        <strong>Initiative:</strong> <span id="initiative">+0</span>
+                    </div>
+                    <div class="combat-stat">
+                        <strong>Proficiency Bonus:</strong> <span id="proficiency-bonus">+2</span>
+                    </div>
+                    <div class="combat-stat">
+                        <strong>Hit Points (HP):</strong> <span id="hp">10/10</span>
+                    </div>
+                    <div class="combat-stat">
+                        <strong>Hit Dice:</strong> <span id="hit-dice">1d10</span>
+                    </div>
+                </section>
+                <section class="savingThrows">
+                    <h2>Saving Throws</h2>
+                    <div class="saving-throw">
+                        <strong>Strength:</strong> <span id="strength-save">+0</span>
+                    </div>
+                    <div class="saving-throw">
+                        <strong>Dexterity:</strong> <span id="dexterity-save">+0</span>
+                    </div>
+                    <div class="saving-throw">
+                        <strong>Constitution:</strong> <span id="constitution-save">+0</span>
+                    </div>
+                    <div class="saving-throw">
+                        <strong>Intelligence:</strong> <span id="intelligence-save">+0</span>
+                    </div>
+                    <div class="saving-throw">
+                        <strong>Wisdom:</strong> <span id="wisdom-save">+0</span>
+                    </div>
+                    <div class="saving-throw">
+                        <strong>Charisma:</strong> <span id="charisma-save">+0</span>
+                    </div>
+                </section>
+            </section>
+            <section class="skillSheet section">
+                <h2>Skills</h2>
+                <div class="skillOption">
+                    <strong>Acrobatics:</strong> <span id="acrobatics">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Animal Handling:</strong> <span id="animal-handling">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Arcana:</strong> <span id="arcana">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Athletics:</strong> <span id="athletics">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Deception:</strong> <span id="deception">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>History:</strong> <span id="history">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Insight:</strong> <span id="insight">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Intimidation:</strong> <span id="intimidation">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Investigation:</strong> <span id="investigation">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Medicine:</strong> <span id="medicine">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Nature:</strong> <span id="nature">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Perception:</strong> <span id="perception">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Performance:</strong> <span id="performance">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Persuasion:</strong> <span id="persuasion">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Religion:</strong> <span id="religion">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Sleight of Hand:</strong> <span id="sleight-of-hand">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Stealth:</strong> <span id="stealth">+0</span>
+                </div>
+                <div class="skillOption">
+                    <strong>Survival:</strong> <span id="survival">+0</span>
+                </div>
+            </section>
+            <section class="feats section">
+                <h2>Feats</h2>
+                <ul id="feats-list">
+                    <li>Feat Name - Description</li>
+                </ul>
+            </section>
+            <section class="spellsSheet section">
+                <h2>Spells</h2>
+                <div class="spellLevelSheet">
+                    <h3>Cantrips</h3>
+                    <ul id="cantrips-list">
+                        <li>
+                            <strong>Spell Name:</strong> Name
+                            <p><strong>Description:</strong> Description</p>
+                            <p><strong>School:</strong> School Name</p>
+                            <p><strong>Range:</strong> Distance in Feat, Self, or Touch</p>
+                            <p><strong>Components:</strong> V, S, M</p>
+                            <p><strong>Materials:</strong> None or Materials</p>
+                            <p><strong>Duration:</strong> Duration Length</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="spellLevelSheet">
+                    <h3>1st Level Spells</h3>
+                    <ul id="first-level-spells-list">
+                        <li>
+                            <strong>Spell Name:</strong> Name
+                            <p><strong>Description:</strong> Description</p>
+                            <p><strong>School:</strong> School Name</p>
+                            <p><strong>Range:</strong> Distance in Feat, Self, or Touch</p>
+                            <p><strong>Components:</strong> V, S, M</p>
+                            <p><strong>Materials:</strong> None or Materials</p>
+                            <p><strong>Duration:</strong> Duration Length</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="equipment section">
+                <h2>Equipment</h2>
+                <ul id="equipment-list">
+                    <li>Sword</li>
+                    <li>Shield</li>
+                </ul>
+            </section>
+        </div>
+    </div>    
+</body>
+</html>

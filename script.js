@@ -1,6 +1,26 @@
-async function getSpells() {
-    let resp = await fetch("https://api.open5e.com/v2/spells/");
-    let data = await resp.json();
-    console.log(data);
-}
-getSpells()
+document.addEventListener('DOMContentLoaded', () => {
+    const togglePopupBtn = document.getElementById('togglePopup');
+    const popup = document.getElementById('popup');
+    const closePopupBtn = document.getElementById('closePopup');
+
+    //toggles popup
+    togglePopupBtn.addEventListener('click', () => {
+        if (popup.style.display === 'block' || popup.style.display === '') {
+            popup.style.display = 'none';
+        } else {
+            popup.style.display = 'block';
+        }
+    });
+
+    //closes
+    closePopupBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+
+    //closes the popup if user clicks anywhere else
+    window.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+});

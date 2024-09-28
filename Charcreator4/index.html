@@ -2,13 +2,68 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
     <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <style>
+        body{
+            height: 100vh; 
+            width: 100vw;
+            margin: 0px; 
+            padding: 0px;
+        }
+
+        .scrollable-container {
+            overflow-y: auto;
+            height: 900px;
+        }
+
+        #featSearch {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: var(--button-bg);
+        }
+
+        li input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        p {
+            margin: 0;
+            padding: 5px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+        }
+    </style>
     <header>
         <div class="header">
             <a class="pageLink" href="../index.html">Home</a>
@@ -30,7 +85,7 @@
             <a class="nextBackLink" href="../Charcreator5/">Next</a>
         </div>
     </div>
-    <div class="wrapper">
+    <div style="display: flex; flex-direction: row; text-align: center;">
         <div class="container">
             <div>
                 <h1>Selected Feats</h1>
@@ -42,14 +97,16 @@
             </div>
         </div>
         <div class="container">
-            <div>
-                <h1>All Feats</h1>
-                <input type="search" name="feat" id="feat">
-                <div>
-                    <ul id="resultList">
+            <div class="scrollable-container">
+                <div style="justify-content: center;">
+                    <h1>All Feats</h1>
+                    <input type="search" name="feat" id="featSearch">
+                    <div style="text-align: center;">
+                        <ul id="resultList" style="overflow-y: scroll; list-style: none;">
 
-                    </ul>
+                        </ul>
                 </div>
             </div>
         </div>
     </div>
+</body>
