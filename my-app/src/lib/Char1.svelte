@@ -2,8 +2,6 @@
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 
-	
-	
 	/**
 	 * @type {{ Name: any; Level: any; Race: any; Class: any; Background: any; RolledHitpoints: any; Strength: any; Dexterity: any; Constitution: any; Intelligence: any; Wisdom: any; Charisma: any; Traits: any; ClassDesc: string; Benefits: any; ProficientSkills: any; chosenFeats: any; chosenSpells: any; }}
 	 */
@@ -55,159 +53,132 @@
 			<h2>Charisma: {localCharacter.Charisma}</h2>
 		</div>
 		<div class="buttons">
-			<div class="race">
+			<div class="charOption">
 				<button
 					on:click={() => (showRace = !showRace)}
 					style="margin:0%; width: 100%;
-		height: 20%;
-		font-size: 16pt;
+		height: 100%;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);">{localCharacter.Race}</button
 				>
 				{#if showRace}
-					<div class="option-description">
+					<div class="content">
 						<h3>Description:</h3>
-						<ul>
-							{#each localCharacter.Traits as trait}
+
+						{#each localCharacter.Traits as trait}
 							<p><strong>{trait.name}</strong></p>
-								<p>{@html getRaceDescription(trait.desc)}</p>
-							{/each}
-						</ul>
+							<p>{@html getRaceDescription(trait.desc)}</p>
+						{/each}
 					</div>
 				{/if}
 			</div>
-			<div class="class">
+			<div class="charOption">
 				<button
 					on:click={() => (showClass = !showClass)}
 					style="margin:0%; width: 100%;
-		height: 20%;
-		font-size: 16pt;
+		height: 100%;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);">{localCharacter.Class}</button
 				>
 				{#if showClass}
-					<div class="class-option">
+					<div class="content">
 						<h3>Description:</h3>
-						<ul>
-							
-							<p>{@html getClassDescription(localCharacter.ClassDesc)}</p>
-							
-						</ul>
+
+						<p>{@html getClassDescription(localCharacter.ClassDesc)}</p>
 					</div>
 				{/if}
 			</div>
-			<div class="background">
+			<div class="charOption">
 				<button
 					on:click={() => (showBackground = !showBackground)}
 					style="margin:0%; width: 100%;
 		height: 100%;
-		font-size: 16pt;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);">{localCharacter.Background}</button
 				>
 				{#if showBackground}
-					<div class="background-content">
+					<div class="content">
 						<h3>Description:</h3>
-						<ul>
-							{#each localCharacter.Benefits as benefit}
+
+						{#each localCharacter.Benefits as benefit}
 							<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
-							{/each}
-						</ul>
+						{/each}
 					</div>
 				{/if}
 			</div>
-			<div class="skills">
+			<div class="charOption">
 				<button
 					on:click={() => (showSkills = !showSkills)}
 					style="margin:0%; width: 100%;
 		height: 100%;
-		font-size: 16pt;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		background-color: var(--button-bg);"><strong>Skills</strong></button
+		background-color: var(--button-bg);">Skills</button
 				>
 				{#if showSkills}
-					<div class="skill-content">
-						<ul>
-							{#each localCharacter.ProficientSkills as skill}
-								<li><strong>{skill}</strong></li>
-							{/each}
-						</ul>
+					<div class="content" style="text-align: center;">
+						{#each localCharacter.ProficientSkills as skill}
+							<li><strong>{skill}</strong></li>
+						{/each}
 					</div>
 				{/if}
 			</div>
-			<div class="feats">
+			<div class="charOption">
 				<button
 					on:click={() => (showFeats = !showFeats)}
 					style="margin:0%; width: 100%;
 			height: 100%;
-			font-size: 16pt;
+			font-size: 2vh;
 			font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-			background-color: var(--button-bg);"><strong>Feats</strong></button
+			background-color: var(--button-bg);">Feats</button
 				>
 				{#if showFeats}
-					<div class="feat-content">
-						<ul>
-							{#each localCharacter.chosenFeats as feat}
-								<li><strong>{feat.name}</strong></li>
-								<p>{feat.description}</p>
-							{/each}
-						</ul>
+					<div class="content">
+						{#each localCharacter.chosenFeats as feat}
+							<li><strong>{feat.name}</strong></li>
+							<p>{feat.description}</p>
+						{/each}
 					</div>
 				{/if}
 			</div>
-			<div class="spells">
+			<div class="charOption">
 				<button
 					on:click={() => (showSpells = !showSpells)}
 					style="margin:0%; width: 100%;
-	height: 4em;
-	font-size: 16pt;
+	height: 100%;
+	font-size: 2vh;
 	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	background-color: var(--button-bg);"><strong>Spells</strong></button
+	background-color: var(--button-bg);">Spells</button
 				>
 				{#if showSpells}
-					<div class="spell-content">
-						<ul>
-							{#each localCharacter.chosenSpells as spell}
-								<li><strong>{spell.name}</strong></li>
-								<p>{spell.description}</p>
-							{/each}
-						</ul>
+					<div class="content">
+						{#each localCharacter.chosenSpells as spell}
+							<li><strong>{spell.name}</strong></li>
+							<p>{spell.description}</p>
+						{/each}
 					</div>
 				{/if}
 			</div>
 		</div>
-		<div class="buttons">
-			
-		</div>
+		<div class="buttons"></div>
 	</div>
-	{/if}
+{/if}
+
 <style>
-	.class {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	.charOption {
+		height: 10vh;
+		width: 16vw;
 	}
 
-	.race {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-	.option-description {
+	.content {
 		overflow-y: auto;
-		height: 20em;
+		height: 30vh;
+		width: 16vw;
 	}
 
-	.class-option {
-		overflow-y: auto;
-		height: 20em;
-	}
 	.wrapper {
 		background-color: #d9d9d9;
 		border: var(--button-selected) 5px solid;
@@ -218,16 +189,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	h2 {
-		padding-right: 30px;
+		padding-right: 2vw;
+		font-size: 2vh;
 	}
 
 	.attributes {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.buttons {
@@ -236,63 +210,14 @@
 		justify-content: center;
 		width: 100%;
 	}
-
-	.spells {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	li {
+		font-size: 1.5vh;
+		list-style: none;
 	}
-
-	.skills {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	p {
+		font-size: 1.5vh;
 	}
-
-	.feats {
-		padding-top: 20px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.spell-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.feat-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.skill-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	button:hover {
-		color: cyan;
-	}
-	.background {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		max-height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.background-content {
-		overflow-y: auto;
-		height: 20em;
+	h3 {
+		font-size: 1.5vh;
 	}
 </style>

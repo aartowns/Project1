@@ -86,9 +86,13 @@
 
 <style>
 	button {
-		width: 20%;
-		height: 4em;
-		font-size: 16pt;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		width: 20vw;
+		height: 6vh;
+		font-size: 1.5vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);
 	}
