@@ -46,7 +46,8 @@
 	}
 	li {
 		display: inline;
-		margin-right: 10px;
+		margin-right: 1vw;
+		font-size: 2vh;
 	}
 
 	input[type='checkbox'] {
@@ -57,6 +58,7 @@
 		text-decoration: none;
 		display: inline-block;
 		text-align: center;
+		font-size: 2vh;
 	}
 
 	li:hover {

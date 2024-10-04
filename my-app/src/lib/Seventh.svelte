@@ -177,13 +177,16 @@
 </div>
 
 <style>
+	h1 {
+		font-size: 4vh;
+	}
 	.spells {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
 		overflow-y: auto;
-		width: 700px;
+		width: 100%;
 		height: auto;
 		flex-wrap: nowrap;
 	}
@@ -211,11 +214,11 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 700px;
-		height: 300px;
+		width: 80vw;
+		height: 50vh;
 		background-color: var(--button-bg);
-		margin: 10px;
-		padding: 10px;
+		margin: 1vw;
+		padding: 1vw;
 		border: solid black 0.5px;
 	}
 
@@ -223,8 +226,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: 100%;
-		padding: 20px;
+		width: 90vw;
+		padding: 2vw;
 		background-color: var(--button-bg);
 		border: solid black 0.5px;
 		box-sizing: border-box;
@@ -239,7 +242,7 @@
 
 	.selectedSpells h1 {
 		margin: 0;
-		padding: 10px 0;
+		padding: 1vw;
 		text-align: center;
 		width: 100%;
 	}

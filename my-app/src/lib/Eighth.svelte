@@ -26,7 +26,7 @@
 	<div class="save">
 		<div class="save-slot">
 			<select
-				style="width:100%; background-color: var(--button-bg); border: solid black 1px;"
+				style="width:100%; background-color: var(--button-bg); border: solid black 1px; font-size: 2vh;"
 				name="slot"
 				id="slot"
 				bind:value={slot}
@@ -40,9 +40,9 @@
 		</div>
 		<div class="save-button">
 			<button
-				style="margin:0%; width: 100%;
+				style="margin:0%; width: 100%; height: 100%;
 height: 100%;
-font-size: 16pt;
+font-size: 2vh;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 background-color: var(--button-bg);"
 				on:click={saveCharacter}
@@ -68,123 +68,106 @@ background-color: var(--button-bg);"
 		<h2>Charisma: {$character.Charisma}</h2>
 	</div>
 	<div class="buttons">
-		<div class="race">
+		<div class="charOption">
 			<button
 				on:click={() => (showRace = !showRace)}
-				style="margin:0%; width: 100%;
-    height: 20%;
-    font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+    font-size: 2vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: var(--button-bg);">{$character.Race}</button
 			>
 			{#if showRace}
-				<div class="option-description">
+				<div class="content">
 					<h3>Description:</h3>
-					<ul>
-						{#each $character.Traits as trait}
+
+					{#each $character.Traits as trait}
 						<p><strong>{trait.name}</strong></p>
-							<p>{@html getRaceDescription(trait.desc)}</p>
-						{/each}
-					</ul>
+						<p>{@html getRaceDescription(trait.desc)}</p>
+					{/each}
 				</div>
 			{/if}
 		</div>
-		<div class="class">
+		<div class="charOption">
 			<button
 				on:click={() => (showClass = !showClass)}
-				style="margin:0%; width: 100%;
-    height: 20%;
-    font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+    font-size: 2vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: var(--button-bg);">{$character.Class}</button
 			>
 			{#if showClass}
-				<div class="class-option">
+				<div class="content">
 					<h3>Description:</h3>
-					<ul>
-						
-						<p>{@html getClassDescription($character.ClassDesc)}</p>
-						
-					</ul>
+
+					<p>{@html getClassDescription($character.ClassDesc)}</p>
 				</div>
 			{/if}
 		</div>
-		<div class="background">
+		<div class="charOption">
 			<button
 				on:click={() => (showBackground = !showBackground)}
-				style="margin:0%; width: 100%;
-    height: 100%;
-    font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+    font-size: 2vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: var(--button-bg);">{$character.Background}</button
 			>
 			{#if showBackground}
-				<div class="background-content">
+				<div class="content">
 					<h3>Description:</h3>
-					<ul>
-						{#each $character.Benefits as benefit}
+
+					{#each $character.Benefits as benefit}
 						<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
-						{/each}
-					</ul>
+					{/each}
 				</div>
 			{/if}
 		</div>
-		<div class="skills">
+		<div class="charOption">
 			<button
 				on:click={() => (showSkills = !showSkills)}
-				style="margin:0%; width: 100%;
-    height: 100%;
-    font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+    font-size: 2vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: var(--button-bg);">Skills</button
 			>
 			{#if showSkills}
-				<div class="skill-content">
-					<ul>
-						{#each $character.ProficientSkills as skill}
-							<li><strong>{skill}</strong></li>
-						{/each}
-					</ul>
+				<div class="content" style="text-align: center;">
+					{#each $character.ProficientSkills as skill}
+						<li><strong>{skill}</strong></li>
+					{/each}
 				</div>
 			{/if}
 		</div>
-		<div class="feats">
+		<div class="charOption">
 			<button
 				on:click={() => (showFeats = !showFeats)}
-				style="margin:0%; width: 100%;
-		height: 100%;
-		font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);">Feats</button
 			>
 			{#if showFeats}
-				<div class="feat-content">
-					<ul>
-						{#each $character.chosenFeats as feat}
-							<li><strong>{feat.name}</strong></li>
-							<p>{feat.description}</p>
-						{/each}
-					</ul>
+				<div class="content">
+					{#each $character.chosenFeats as feat}
+						<li><strong>{feat.name}</strong></li>
+						<p>{feat.description}</p>
+					{/each}
 				</div>
 			{/if}
 		</div>
-		<div class="spells">
+		<div class="charOption">
 			<button
 				on:click={() => (showSpells = !showSpells)}
-				style="margin:0%; width: 100%;
-height: 4em;
-font-size: 16pt;
+				style="margin:0%; width: 100%; height: 100%;
+font-size: 2vh;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 background-color: var(--button-bg);">Spells</button
 			>
 			{#if showSpells}
-				<div class="spell-content">
-					<ul>
-						{#each $character.chosenSpells as spell}
-							<li><strong>{spell.name}</strong></li>
-							<p>{spell.description}</p>
-						{/each}
-					</ul>
+				<div class="content">
+					{#each $character.chosenSpells as spell}
+						<li><strong>{spell.name}</strong></li>
+						<p>{spell.description}</p>
+					{/each}
 				</div>
 			{/if}
 		</div>
@@ -192,14 +175,14 @@ background-color: var(--button-bg);">Spells</button
 </div>
 
 <style>
-	.option-description {
-		overflow-y: auto;
-		height: 20em;
+	.charOption {
+		height: 10vh;
+		width: 16vw;
 	}
-
-	.class-option {
+	.content {
 		overflow-y: auto;
-		height: 20em;
+		height: 30vh;
+		width: 16vw;
 	}
 	.wrapper {
 		background-color: #d9d9d9;
@@ -211,16 +194,19 @@ background-color: var(--button-bg);">Spells</button
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	h2 {
-		padding-right: 30px;
+		padding-right: 2vw;
+		font-size: 2vh;
 	}
 
 	.attributes {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.buttons {
@@ -228,65 +214,6 @@ background-color: var(--button-bg);">Spells</button
 		flex-direction: row;
 		justify-content: center;
 		width: 100%;
-	}
-
-	.background {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		max-height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.background-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.spells {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.class {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.race {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 20em;
-		font-size: 16pt;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.skills {
-		padding-top: 20px;
-		margin: 0px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
-
-	.feats {
-		padding-top: 20px;
-		width: 25%;
-		height: 4em;
-		font-size: 16pt;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	}
 
 	.save {
@@ -301,33 +228,30 @@ background-color: var(--button-bg);">Spells</button
 		padding: 20px;
 		padding-bottom: 0px;
 		margin: 0px;
-		width: 20%;
-		height: 4em;
-		font-size: 16pt;
+		width: 50vw;
+		height: 10vh;
+		font-size: 2vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	}
 
 	.save-slot {
 		padding-bottom: 20px;
-		width: 5%;
-	}
-
-	.spell-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.feat-content {
-		overflow-y: auto;
-		height: 20em;
-	}
-
-	.skill-content {
-		overflow-y: auto;
-		height: 20em;
+		width: 20vw;
+		height: 5vh;
 	}
 
 	button:hover {
 		color: cyan;
+	}
+
+	li {
+		font-size: 1.5vh;
+		list-style: none;
+	}
+	p {
+		font-size: 1.5vh;
+	}
+	h3 {
+		font-size: 1.5vh;
 	}
 </style>

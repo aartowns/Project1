@@ -30,7 +30,9 @@
 				const data = await response.json();
 
 				if (data.results.length > 0) {
-					const filteredRaces = data.results.filter((/** @type {{ is_subrace: any; }} */ race) => !race.is_subrace);
+					const filteredRaces = data.results.filter(
+						(/** @type {{ is_subrace: any; }} */ race) => !race.is_subrace
+					);
 					races = [...races, ...filteredRaces];
 					page++;
 				} else {
@@ -85,7 +87,7 @@
 				bind:value={$character.Race}
 				name="Background"
 				id="Background"
-				style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+				style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 30vw;"
 				on:change={onRaceChange}
 			>
 				{#each races as race}
@@ -95,14 +97,12 @@
 		</div>
 		{#if selectedRace}
 			<div class="outside-div">
-				<h3>Description:</h3>
+				<h3>Race Description:</h3>
 				<div class="option-description">
-					<ul>
-						{#each selectedRace.traits as trait}
-							<p><strong>{trait.name}</strong></p>
-							<p>{@html getRaceDescription(trait.desc)}</p>
-						{/each}
-					</ul>
+					{#each selectedRace.traits as trait}
+						<p><strong>{trait.name}</strong></p>
+						<p>{@html getRaceDescription(trait.desc)}</p>
+					{/each}
 				</div>
 			</div>
 		{/if}
@@ -114,7 +114,7 @@
 				bind:value={$character.Class}
 				name="Background"
 				id="Background"
-				style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+				style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 30vw;"
 				on:change={onClassChange}
 			>
 				{#each classes as clas}
@@ -124,11 +124,9 @@
 		</div>
 		{#if selectedClass}
 			<div class="outside-div">
-				<h3>Description:</h3>
+				<h3>Class Description:</h3>
 				<div class="class-description">
-					<ul>
-						<p>{@html getClassDescription(selectedClass.desc)}</p>
-					</ul>
+					<p>{@html getClassDescription(selectedClass.desc)}</p>
 				</div>
 			</div>
 		{/if}
@@ -136,8 +134,14 @@
 </div>
 
 <style>
+	label {
+		font-size: 2vh;
+	}
+	h3 {
+		font-size: 2vh;
+	}
 	p {
-		font-size: 16pt;
+		font-size: 1.5vh;
 	}
 	.big-wrapper {
 		width: 100vw;
@@ -161,42 +165,40 @@
 		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 50vw;
+		height: 10vh;
 		background-color: var(--button-bg);
-		margin: 60px;
+		margin: 2vh;
 		padding: 0;
 		border: solid black 0.5px;
 	}
 
 	.labelPg1 {
-		font-size: 20px;
-		padding-right: 10px;
-	}
-
-	.option {
-		font-size: 20px;
+		padding-right: 2vw;
 	}
 	.option-description {
-		height: 400px;
-		width: 80%;
-		overflow-y: auto;
-		background-color: #d9d9d9;
-	}
-	.class-description {
-		height: 400px;
-		width: 80%;
+		height: 32vh;
+		width: 40vw;
 		overflow-y: auto;
 		background-color: #d9d9d9;
 		margin: 2%;
+		border: black .25px solid;
+		padding: 1vh;
+	}
+	.class-description {
+		height: 32vh;
+		width: 40vw;
+		overflow-y: auto;
+		background-color: #d9d9d9;
+		margin: 2%;
+		border: black .25px solid;
+		padding: 1vh;
 	}
 	.outside-div {
 		display: flex;
 		flex-direction: column;
-		width: 90%;
-		height: 500px;
+		width: 50vw;
+		height: 36vh;
 		background-color: var(--button-bg);
 		justify-content: center;
 		align-items: center;

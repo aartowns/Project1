@@ -27,7 +27,7 @@
 			bind:value={$character.Strength}
 			name="Strength"
 			id="Strength"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -57,7 +57,7 @@
 			bind:value={$character.Dexterity}
 			name="dexterity"
 			id="dexterity"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -87,7 +87,7 @@
 			bind:value={$character.Constitution}
 			name="constitution"
 			id="constitution"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -117,7 +117,7 @@
 			bind:value={$character.Intelligence}
 			name="intelligence"
 			id="intelligence"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -147,7 +147,7 @@
 			bind:value={$character.Wisdom}
 			name="wisdom"
 			id="wisdom"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -177,7 +177,7 @@
 			bind:value={$character.Charisma}
 			name="charisma"
 			id="charisma"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 10vw;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -212,7 +212,7 @@
 		height: 100%;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
+		gap: .5vh;
 		margin: 0;
 		flex-direction: row;
 	}
@@ -222,22 +222,21 @@
 		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 40vw;
+		height: 10vh;
 		background-color: var(--button-bg);
-		margin: 60px;
+		margin: 2vh;
 		padding: 0;
 		border: solid black 0.5px;
+		align-content: flex-start;
 	}
 
 	.labelPg1 {
-		font-size: 20px;
-		padding-right: 10px;
+		font-size: 2vh;
+		padding-right: 2vh;
 	}
 
 	.option {
-		font-size: 20px;
+		font-size: 2vh;
 	}
 </style>

@@ -54,7 +54,7 @@
 			bind:value={$character.Background}
 			name="Background"
 			id="Background"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 30vw;"
 			on:change={onBackgroundChange}
 		>
 			{#each backgrounds as background}
@@ -66,33 +66,36 @@
 		<div class="outside-div">
 			<h3>Description:</h3>
 			<div class="background-description">
-				<ul>
-					{#each selectedBackground.benefits as benefit}
-						<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
-					{/each}
-				</ul>
+				{#each selectedBackground.benefits as benefit}
+					<p><strong>{benefit.name}</strong> {@html getBackgroundDesc(benefit.desc)}</p>
+				{/each}
 			</div>
 		</div>
 	{/if}
 </div>
 
 <style>
+	h3 {
+		font-size: 2vh;
+	}
+	label {
+		font-size: 2vh;
+		padding-right: 2vh;
+	}
 	p {
-		font-size: 16pt;
+		font-size: 1.5vh;
 	}
 	.background {
 		display: flex;
-		flex-direction: column;
+		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 65vw;
+		height: 10vh;
 		background-color: var(--button-bg);
-		margin: 60px;
+		margin: 2vh;
 		padding: 0;
-		border: solid black 0.5px;
+		border: solid black 0.25px;
 	}
 	.wrapper {
 		display: flex;
@@ -107,16 +110,19 @@
 		flex-direction: row;
 	}
 	.background-description {
-		height: 400px;
-		width: 80%;
+		height: 32vh;
+		width: 70vw;
 		overflow-y: auto;
 		background-color: #d9d9d9;
+		margin: 2%;
+		border: black 0.25px solid;
+		padding: 1vh;
 	}
 	.outside-div {
 		display: flex;
 		flex-direction: column;
-		width: 90%;
-		height: 500px;
+		width: 80vw;
+		height: 36vh;
 		background-color: var(--button-bg);
 		justify-content: center;
 		align-items: center;

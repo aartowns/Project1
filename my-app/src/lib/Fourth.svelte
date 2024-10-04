@@ -153,7 +153,7 @@
 		height: 100%;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
+		gap: .5vh;
 		margin: 0;
 		flex-direction: row;
 	}
@@ -163,17 +163,14 @@
 		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 40vw;
+		height: 5vh;
 		background-color: var(--button-bg);
-		margin: 60px;
-		padding: 0;
 		border: solid black 0.5px;
+		align-content: flex-start;
 	}
 
 	.label {
-		font-size: 20px;
+		font-size: 2vh;
 	}
 </style>
