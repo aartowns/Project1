@@ -1,0 +1,296 @@
+name,description,traits
+"Dragonborn","Your draconic heritage manifests in a variety of traits you share with other dragonborn.","Ability Score Increase: Your Strength score increases by 2, and your Charisma score increases by 1. | Speed: Your base walking speed is 30 feet. | Age: Young dragonborn grow quickly. They walk hours after hatching, attain the size
+and development of a 10-year-old human child by the age of 3, and reach
+adulthood by 15. They live to be around 80. | Alignment: Dragonborn tend to extremes, making a conscious choice for one side or the other
+in the cosmic war between good and evil. Most dragonborn are good, but those who
+side with evil can be terrible villains. | Size: Dragonborn are taller and heavier than humans, standing well over 6 feet tall
+and averaging almost 250 pounds. Your size is Medium. | Languages: You can speak, read, and write Common and Draconic. Draconic is thought to be
+one of the oldest languages and is often used in the study of magic. The
+language sounds harsh to most other creatures and includes numerous hard
+consonants and sibilants. | Draconic Ancestry table: Dragon Damage Type Breath Weapon Black Acid 5 by 30 ft. line (Dex. save) Blue
+Lightning 5 by 30 ft. line (Dex. save) Brass Fire 5 by 30 ft. line (Dex. save)
+Bronze Lightning 5 by 30 ft. line (Dex. save) Copper Acid 5 by 30 ft. line (Dex.
+save) Gold Fire 15 ft. cone (Dex. save) Green Poison 15 ft. cone (Con. save) Red
+Fire 15 ft. cone (Dex. save) Silver Cold 15 ft. cone (Con. save) White Cold 15
+ft. cone (Con. save) | Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry
+table. Your breath weapon and damage resistance are determined by the dragon
+type, as shown in the table. | Breath Weapon: You can use your action to exhale destructive energy. Your draconic ancestry
+determines the size, shape, and damage type of the exhalation. When you use your
+breath weapon, each creature in the area of the exhalation must make a saving
+throw, the type of which is determined by your draconic ancestry. The DC for
+this saving throw equals 8 + your Constitution modifier + your proficiency
+bonus. A creature takes 2d6 damage on a failed save, and half as much damage on
+a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level,
+and 5d6 at 16th level. | Damage Resistance: You have resistance to the damage type associated with your draconic ancestry."
+"Dwarf","Your dwarf character has an assortment of inborn abilities, part and parcel of dwarven nature.","Ability Score Increase: Your Constitution score increases by 2. | Speed: Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy
+armor. | Darkvision: Accustomed to life underground, you have superior vision in dark and dim
+conditions. You can see in dim light within 60 feet of you as if it were bright
+light, and in darkness as if it were dim light. You can't discern color in
+darkness, only shades of gray. | Age: Dwarves mature at the same rate as humans, but they're considered young until
+they reach the age of 50. On average, they live about 350 years. | Alignment: Most dwarves are lawful, believing firmly in the benefits of a well-ordered
+society. They tend toward good as well, with a strong sense of fair play and a
+belief that everyone deserves to share in the benefits of a just order. | Size: Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size
+is Medium. | Languages: You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard
+consonants and guttural sounds, and those characteristics spill over into
+whatever other language a dwarf might speak. | Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance
+against poison damage. | Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, light hammer, and warhammer. | Tool Proficiency: You gain proficiency with the artisan's tools of your choice: smith's tools,
+brewer's supplies, or mason's tools. | Stonecunning: Whenever you make an Intelligence (History) check related to the origin of
+stonework, you are considered proficient in the History skill and add double
+your proficiency bonus to the check, instead of your normal proficiency bonus."
+"Elf","Your elf character has a variety of natural abilities, the result of thousands of years of elven refinement.","Ability Score Increase: Your Dexterity score increases by 2. | Speed: Your base walking speed is 30 feet. | Darkvision: Accustomed to twilit forests and the night sky, you have superior vision in dark
+and dim conditions. You can see in dim light within 60 feet of you as if it were
+bright light, and in darkness as if it were dim light. You can't discern color
+in darkness, only shades of gray. | Age: Although elves reach physical maturity at about the same age as humans, the
+elven understanding of adulthood goes beyond physical growth to encompass
+worldly experience. An elf typically claims adulthood and an adult name around
+the age of 100 and can live to be 750 years old. | Alignment: Elves love freedom, variety, and self-­expression, so they lean strongly toward
+the gentler aspects of chaos. They value and protect others’ freedom as well as
+their own, and they are more often good than not. | Size: Elves range from under 5 to over 6 feet tall and have slender builds. Your size
+is Medium. | Languages: You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle
+intonations and intricate grammar. Elven literature is rich and varied, and
+their songs and poems are famous among other races. Many bards learn their
+language so they can add Elvish ballads to their repertoires. | Keen Senses: You have proficiency in the Perception skill. | Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put
+you to sleep. | Trance: Elves don't need to sleep. Instead, they meditate deeply, remaining
+semiconscious, for 4 hours a day. (The Common word for such meditation is
+“trance.”) While meditating, you can dream after a fashion; such dreams are
+actually mental exercises that have become reflexive through years of practice.
+After resting in this way, you gain the same benefit that a human does from 8
+hours of sleep."
+"Gnome","Your gnome character has certain characteristics in common with all other gnomes.","Ability Score Increase: Your Intelligence score increases by 2. | Speed: Your base walking speed is 25 feet. | Darkvision: Accustomed to life underground, you have superior vision in dark and dim
+conditions. You can see in dim light within 60 feet of you as if it were bright
+light, and in darkness as if it were dim light. You can't discern color in
+darkness, only shades of gray. | Age: Gnomes mature at the same rate humans do, and most are expected to settle down
+into an adult life by around age 40. They can live 350 to almost 500 years. | Alignment: Gnomes are most often good. Those who tend toward law are sages, engineers,
+researchers, scholars, investigators, or inventors. Those who tend toward chaos
+are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are
+good-hearted, and even the tricksters among them are more playful than vicious. | Size: Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is
+Small. | Languages: You can speak, read, and write Common and Gnomish. The Gnomish language, which
+uses the Dwarvish script, is renowned for its technical treatises and its
+catalogs of knowledge about the natural world. | Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws
+against magic."
+"Half-Elf","Your half-elf character has some qualities in common with elves and some that are unique to half-elves.","Ability Score Increase: Your Charisma score increases by 2, and two other ability scores of your choice
+increase by 1. | Speed: Your base walking speed is 30 feet. | Darkvision: Thanks to your elf blood, you have superior vision in dark and dim conditions.
+You can see in dim light within 60 feet of you as if it were bright light, and
+in darkness as if it were dim light. You can't discern color in darkness, only
+shades of gray. | Age: Half-elves mature at the same rate humans do and reach adulthood around the age
+of 20. They live much longer than humans, however, often exceeding 180 years. | Alignment: Half-elves share the chaotic bent of their elven heritage. They value both
+personal freedom and creative expression, demonstrating neither love of leaders
+nor desire for followers. They chafe at rules, resent others' demands, and
+sometimes prove unreliable, or at least unpredictable. | Size: Half-elves are about the same size as humans, ranging from 5 to 6 feet tall.
+Your size is Medium. | Languages: You can speak, read, and write Common, Elvish, and one extra language of your
+choice. | Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put
+you to sleep. | Skill Versatility: You gain proficiency in two skills of your choice."
+"Half-Orc","Your half-orc character has certain traits deriving from your orc ancestry.","Ability Score Increase: Your Strength score increases by 2, and your Constitution score increases by 1. | Speed: Your base walking speed is 30 feet. | Darkvision: Thanks to your orc blood, you have superior vision in dark and dim conditions.
+You can see in dim light within 60 feet of you as if it were bright light, and
+in darkness as if it were dim light. You can't discern color in darkness, only
+shades of gray. | Age: Half-orcs mature a little faster than humans, reaching adulthood around age 14.
+They age noticeably faster and rarely live longer than 75 years. | Alignment: Half-orcs inherit a tendency toward chaos from their orc parents and are not
+strongly inclined toward good. Half-orcs raised among orcs and willing to live
+out their lives among them are usually evil. | Size: Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to
+well over 6 feet tall. Your size is Medium. | Languages: You can speak, read, and write Common and Orc. Orc is a harsh, grating language
+with hard consonants. It has no script of its own but is written in the Dwarvish
+script. | Menacing: You gain proficiency in the Intimidation skill. | Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1
+hit point instead. You can't use this feature again until you finish a long
+rest. | Savage Attacks: When you score a critical hit with a melee weapon attack, you can roll one of
+the weapon's damage dice one additional time and add it to the extra damage of
+the critical hit."
+"Halfling","Your halfling character has a number of traits in common with all other halflings.","Ability Score Increase: Your Dexterity score increases by 2. | Speed: Your base walking speed is 25 feet. | Age: A halfling reaches adulthood at the age of 20 and generally lives into the
+middle of his or her second century. | Alignment: Most halflings are lawful good. As a rule, they are good-hearted and kind, hate
+to see others in pain, and have no tolerance for oppression. They are also very
+orderly and traditional, leaning heavily on the support of their community and
+the comfort of their old ways. | Size: Halflings average about 3 feet tall and weigh about 40 pounds. Your size is
+Small. | Languages: You can speak, read, and write Common and Halfling. The Halfling language isn't
+secret, but halflings are loath to share it with others. They write very little,
+so they don't have a rich body of literature. Their oral tradition, however, is
+very strong. Almost all halflings speak Common to converse with the people in
+whose lands they dwell or through which they are traveling. | Lucky: When you roll a 1 on the d20 for an attack roll, ability check, or saving throw,
+you can reroll the die and must use the new roll. | Brave: You have advantage on saving throws against being frightened. | Halfling Nimbleness: You can move through the space of any creature that is of a size larger than
+yours."
+"Human","It’s hard to make generalizations about humans, but your human character has these traits.","Ability Score Increase: Your ability scores each increase by 1. | Speed: Your base walking speed is 30 feet. | Age: Humans reach adulthood in their late teens and live less than a century. | Alignment: Humans tend toward no particular alignment. The best and the worst are found
+among them. | Size: Humans vary widely in height and build, from barely 5 feet to well over 6 feet
+tall. Regardless of your position in that range, your size is Medium. | Languages: You can speak, read, and write Common and one extra language of your choice.
+Humans typically learn the languages of other peoples they deal with, including
+obscure dialects. They are fond of sprinkling their speech with words borrowed
+from other tongues: Orc curses, Elvish musical expressions, Dwarvish military
+phrases, and so on."
+"Tiefling","Tieflings share certain racial traits as a result of their infernal descent.","Ability Score Increase: Your Intelligence score increases by 1, and your Charisma score increases by 2. | Speed: Your base walking speed is 30 feet. | Darkvision: Thanks to your infernal heritage, you have superior vision in dark and dim
+conditions. You can see in dim light within 60 feet of you as if it were bright
+light, and in darkness as if it were dim light. You can't discern color in
+darkness, only shades of gray. | Age: Tieflings mature at the same rate as humans but live a few years longer. | Alignment: Tieflings might not have an innate tendency toward evil, but many of them end up
+there. Evil or not, an independent nature inclines many tieflings toward a
+chaotic alignment. | Size: Tieflings are about the same size and build as humans. Your size is Medium. | Languages: You can speak, read, and write Common and Infernal. | Hellish Resistance: You have resistance to fire damage. | Infernal Legacy: You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the
+hellish rebuke spell as a 2nd-level spell once with this trait and regain the
+ability to do so when you finish a long rest. When you reach 5th level, you can
+cast the darkness spell once with this trait and regain the ability to do so
+when you finish a long rest. Charisma is your spellcasting ability for these
+spells."
+"Alseid","Your alseid character has certain characteristics in common with all other alseid.","Ability Score Increase: Your Dexterity score increases by 2, and your Wisdom score increases by 1. | Speed: Alseid are fast for their size, with a base walking speed of 40 feet. | Darkvision: Accustomed to the limited light beneath the forest canopy, you have superior
+vision in dark and dim conditions. You can see in dim light within 60 feet of
+you as if it were bright light, and in darkness as if it were dim light. You
+can't discern color in darkness, only shades of gray. | Age: Alseid reach maturity by the age of 20. They can live well beyond 100 years, but
+it is unknown just how old they can become. | Alignment: Alseid are generally chaotic, flowing with the unpredictable whims of nature,
+though variations are common, particularly among those rare few who leave their
+people. | Size: Alseid stand over 6 feet tall and weigh around 300 pounds. Your size is Medium. | Languages: You can speak, read, and write Common and Elvish. | Alseid Weapon Training: You have proficiency with spears and shortbows. | Light Hooves: You have proficiency in the Stealth skill. | Quadruped: The mundane details of the structures of humanoids can present considerable
+obstacles for you. You have to squeeze when moving through trapdoors, manholes,
+and similar structures even when a Medium humanoid wouldn't have to squeeze. In
+addition, ladders, stairs, and similar structures are difficult terrain for you. | Woodfriend: When in a forest, you leave no tracks and can automatically discern true north."
+"Catfolk","Your catfolk character has the following traits.","Ability Score Increase: Your Dexterity score increases by 2. | Speed: Your base walking speed is 30 feet. | Darkvision: You have a cat's keen senses, especially in the dark. You can see in dim light
+within 60 feet of you as if it were bright light, and in darkness as if it were
+dim light. You can't discern color in darkness, only shades of gray. | Age: Catfolk mature at the same rate as humans and can live just past a century. | Alignment: Catfolk tend toward two extremes. Some are free-spirited and chaotic, letting
+impulse and fancy guide their decisions. Others are devoted to duty and personal
+honor. Typically, catfolk deem concepts such as good and evil as less important
+than freedom or their oaths. | Size: Catfolk have a similar stature to humans but are generally leaner and more
+muscular. Your size is Medium | Languages: You can speak, read, and write Common. | Cat's Claws: Your sharp claws can cut with ease. Your claws are natural melee weapons, which
+you can use to make unarmed strikes. When you hit with a claw, your claw deals
+slashing damage equal to 1d4 + your Strength modifier, instead of the
+bludgeoning damage normal for an unarmed strike. | Hunter's Senses: You have proficiency in the Perception and Stealth skills."
+"Darakhul","Your darakhul character has certain characteristics in common with all other darakhul.","Ability Score Increase: Your Constitution score increases by 1. | Speed: Your base walking speed is determined by your Heritage Subrace. | Darkvision: You can see in dim light within 60 feet as though it were bright light and in
+darkness as if it were dim light. You can't discern color in darkness, only
+shades of gray. | Age: An upper limit of darakhul age has never been discovered; most darakhul die
+violently. | Alignment: Your alignment does not change when you become a darakhul, but most darakhul
+have a strong draw toward evil. | Size: Your size is determined by your Heritage Subrace. | Languages: You can speak, read, and write Common, Darakhul, and a language associated with
+your Heritage Subrace. | Hunger for Flesh: You must consume 1 pound of raw meat each day or suffer the effects of
+starvation. If you go 24 hours without such a meal, you gain one level of
+exhaustion. While you have any levels of exhaustion from this trait, you can't
+regain hit points or remove levels of exhaustion until you spend at least 1 hour
+consuming 10 pounds of raw meat. | Imperfect Undeath: You transitioned into undeath, but your transition was imperfect. Though you are
+a humanoid, you are susceptible to effects that target undead. You can regain
+hit points from spells like cure wounds, but you can also be affected by game
+effects that specifically target undead, such as a cleric's Turn Undead feature.
+Game effects that raise a creature from the dead work on you as normal, but they
+return you to life as a darakhul. A true resurrection or wish spell can restore
+you to life as a fully living member of your original race. | Powerful Jaw: Your heavy jaw is powerful enough to crush bones to powder. Your bite is a
+natural melee weapon, which you can use to make unarmed strikes. When you hit
+with it, your bite deals piercing damage equal to 1d4 + your Strength modifier,
+instead of the bludgeoning damage normal for an unarmed strike. | Sunlight Sensitivity: You have disadvantage on attack rolls and on Wisdom (Perception) checks that
+rely on sight when you, the target of your attack, or whatever you are trying to
+perceive is in direct sunlight. | Undead Resilience: You are infused with the dark energy of undeath, which frees you from some
+frailties that plague most creatures. You have resistance to necrotic damage and
+poison damage, you are immune to disease, and you have advantage on saving
+throws against being charmed or poisoned. When you finish a short rest, you can
+reduce your exhaustion level by 1, provided you have ingested at least 1 pound
+of raw meat in the last 24 hours (see Hunger for Flesh). | Undead Vitality: You don't need to breathe, and you don't sleep the way most creatures do.
+Instead, you enter a dormant state that resembles death, remaining
+semiconscious, for 6 hours a day. While dormant, you have disadvantage on Wisdom
+(Perception) checks. After resting in this way, you gain the same benefit that a
+human does from 8 hours of sleep. | Heritage Subrace: You were something else before you became a darakhul. This heritage determines
+some of your traits. Choose one Heritage Subrace below and apply the listed
+traits."
+"Derro","Your derro character has certain characteristics in common with all other derro.","Ability Score Increase: Your Dexterity score increases by 2. | Speed: Derro are fast for their size. Your base walking speed is 30 feet. | Superior Darkvision: Accustomed to life underground, you can see in dim light within 120 feet of you
+as if it were bright light, and in darkness as if it were dim light. You can't
+discern color in darkness, only shades of gray. | Age: Derro reach maturity by the age of 15 and live to be around 75. | Alignment: The derro's naturally unhinged minds are nearly always chaotic, and many, but
+not all, are evil. | Size: Derro stand between 3 and 4 feet tall with slender limbs and wide shoulders.
+Your size is Small. | Languages: You can speak, read, and write Dwarvish and your choice of Common or
+Undercommon. | Eldritch Resilience: You have advantage on Constitution saving throws against spells. | Sunlight Sensitivity: You have disadvantage on attack rolls and on Wisdom (Perception) checks that
+rely on sight when you, the target of your attack, or whatever you are trying to
+perceive is in direct sunlight."
+"Drow","Your drow character has certain characteristics in common with all other drow.","Ability Score Increase: Your Intelligence score increases by 2. | Speed: Your base walking speed is 30 feet. | Superior Darkvision: Accustomed to life in the darkest depths of the world, you can see in dim light
+within 120 feet of you as if it were bright light, and in darkness as if it were
+dim light. You can't discern color in darkness, only shades of gray. | Age: Drow physically mature at the same rate as humans, but they aren't considered
+adults until they reach the age of 50. They typically live to be around 500. | Alignment: Drow believe in reason and rationality, which leads them to favor lawful
+activities. However, their current dire situation makes them more prone than
+their ancestors to chaotic behavior. Their vicious fight for survival makes them
+capable of doing great evil in the name of self-preservation, although they are
+not, by nature, prone to evil in other circumstances. | Size: Drow are slightly shorter and slimmer than humans. Your size is Medium. | Languages: You can speak, read, and write Elvish and your choice of Common or Undercommon. | Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put
+you to sleep. | Mind of Steel: You understand the complexities of minds, as well as the magic that can affect
+them. You have advantage on Wisdom, Intelligence, and Charisma saving throws
+against spells. | Sunlight Sensitivity: You have disadvantage on attack rolls and on Wisdom (Perception) checks that
+rely on sight when you, the target of your attack, or whatever you are trying to
+perceive is in direct sunlight."
+"Erina","Your erina character has traits which complement its curiosity, sociability, and fierce nature.","Ability Score Increase: Your Dexterity score increases by 2, and you can choose to increase either your
+Wisdom or Charisma score by 1. | Speed: Your base walking speed is 25 feet. | Darkvision: Accustomed to life in the dark burrows of your people, you have superior vision
+in dark and dim conditions. You can see in dim light within 60 feet of you as if
+it were bright light, and in darkness as if it were dim light. You can't discern
+color in darkness, only shades of gray. | Age: Erina reach maturity around 15 years and can live up to 60 years, though some
+erina burrow elders have memories of events which suggest erina can live much
+longer. | Alignment: Erina are good-hearted and extremely social creatures who have a difficult time
+adapting to the laws of other species. | Size: Erina average about 3 feet tall and weigh about 50 pounds. Your size is Small. | Languages: You can speak Erina and either Common or Sylvan. | Hardy: The erina diet of snakes and venomous insects has made them hardy. You have
+advantage on saving throws against poison, and you have resistance against
+poison damage. | Spines: Erina grow needle-sharp spines in small clusters atop their heads and along
+their backs. While you are grappling a creature or while a creature is grappling
+you, the creature takes 1d4 piercing damage at the start of your turn. | Keen Senses: You have proficiency in the Perception skill. | Digger: You have a burrowing speed of 20 feet, but you can use it to move through only
+earth and sand, not mud, ice, or rock."
+"Gearforged","The range of gearforged anatomy in all its variants is remarkable, but all gearforged share some common parts.","Ability Score Increase: Two different ability scores of your choice increase by 1. | Speed: Your base walking speed is determined by your Race Chassis. | Age: The soul inhabiting a gearforged can be any age. As long as its new body is kept
+in good repair, there is no known limit to how long it can function. | Alignment: No single alignment typifies gearforged, but most gearforged maintain the
+alignment they had before becoming gearforged. | Size: Your size is determined by your Race Chassis. | Languages: You can speak, read, and write Common, Machine Speech (a whistling, clicking
+language that's incomprehensible to non-gearforged), and a language associated
+with your Race Chassis. | Construct Resilience: Your body is constructed, which frees you from some of the limits of fleshand-
+blood creatures. You have resistance to poison damage, you are immune to
+disease, and you have advantage on saving throws against being poisoned. | Construct Vitality: You don't need to eat, drink, or breathe, and you don't sleep the way most
+creatures do. Instead, you enter a dormant state where you resemble a statue and
+remain semiconscious for 6 hours a day. During this time, the magic in your soul
+gem and everwound springs slowly repairs the day's damage to your mechanical
+body. While in this dormant state, you have disadvantage on Wisdom (Perception)
+checks. After resting in this way, you gain the same benefit that a human does
+from 8 hours of sleep. | Living Construct: Your consciousness and soul reside within a soul gem to animate your mechanical
+body. As such, you are a living creature with some of the benefits and drawbacks
+of a construct. Though you can regain hit points from spells like cure wounds,
+you can also be affected by game effects that specifically target constructs,
+such as the shatter spell. As long as your soul gem remains intact, game effects
+that raise a creature from the dead work on you as normal, repairing the damaged
+pieces of your mechanical body (restoring lost sections only if the spell
+normally restores lost limbs) and returning you to life as a gearforged.
+Alternatively, if your body is destroyed but your soul gem and memory gears are
+intact, they can be installed into a new body with a ritual that takes one day
+and 10,000 gp worth of materials. If your soul gem is destroyed, only a wish
+spell can restore you to life, and you return as a fully living member of your
+original race. | Race Chassis: Four races are known to create unique gearforged, building mechanical bodies
+similar in size and shape to their people: dwarf, gnome, human, and kobold.
+Choose one of these forms."
+"Minotaur","Your minotaur character has certain characteristics in common with all other minotaurs.","Ability Score Increase: Your Strength score increases by 2, and your Constitution score increases by 1. | Speed: Your base walking speed is 30 feet. | Darkvision: You can see in dim light within 60 feet of you as if it were bright light, and
+in darkness as if it were dim light. You can't discern color in darkness, only
+shades of gray. | Age: Minotaurs age at roughly the same rate as humans but mature 3 years earlier.
+Childhood ends around the age of 10 and adulthood is celebrated at 15. | Alignment: Minotaurs possess a wide range of alignments, just as humans do. Mixing a love
+for personal freedom and respect for history and tradition, the majority of
+minotaurs fall into neutral alignments. | Size: Adult males can reach a height of 7 feet, with females averaging 3 inches
+shorter. Your size is Medium. | Languages: You can speak, read, and write Common and Minotaur. | Natural Attacks: Your horns are sturdy and sharp. Your horns are a natural melee weapon, which
+you can use to make unarmed strikes. When you hit with your horns, they deal
+piercing damage equal to 1d6 + your Strength modifier, instead of the
+bludgeoning damage normal for an unarmed strike. | Charge: Once per turn, if you move at least 10 feet toward a target and hit it with a
+horn attack in the same turn, you deal an extra 1d6 piercing damage and you can
+shove the target up to 5 feet as a bonus action. At 11th level, when you shove a
+creature with Charge, you can push it up to 10 feet instead. You can use this
+trait a number of times per day equal to your Constitution modifier (minimum of
+once), and you regain all expended uses when you finish a long rest. | Labyrinth Sense: You can retrace without error any path you have previously taken, with no
+ability check."
+"Mushroomfolk","Your mushroomfolk character has characteristics in common with all other mushroomfolk.","Ability Score Increase: Your Wisdom score increases by 2. | Speed: Your base walking speed is 30 feet. | Darkvision: Accustomed to life underground, you can see in dim light within 60 feet of you
+as if it were bright light, and in darkness as if it were dim light. You can't
+discern color in darkness, only shades of gray. | Age: Mushroomfolk reach maturity by the age of 5 and rarely live longer than 50
+years. | Alignment: The limited interaction mushroomfolk have with other creatures leaves them with
+a fairly neutral view of the world in terms of good and evil, while their
+societal structure makes them more prone to law than chaos. | Size: A mushroomfolk's size is determined by its subrace. | Languages: You can speak, read, and write Mushroomfolk and your choice of Common or
+Undercommon. | Fungoid Form: You are a humanoid, though the fungal nature of your body and your unique diet
+of decayed vegetable and animal matter marks you with some plant-like
+characteristics. You have advantage on saving throws against poison, and you
+have resistance to poison damage. In addition, you are immune to disease. | Hardy Survivor: Your upbringing in mushroomfolk society has taught you how to defend yourself
+and find food. You have proficiency in the Survival skill. | Subrace: Three subraces of mushroomfolk are known to wander the world: acid cap, favored,
+and morel. Choose one of these subraces."
+"Satarre","Your satarre heritage is apparent in a variety of traits you share with other satarre.","Ability Score Increase: Your Constitution score increases by 2, and your Intelligence score increases by
+1. | Speed: Your base walking speed is 30 feet. | Darkvision: Thanks to your dark planar parentage, you have superior vision in darkness. You
+can see in dim light within 60 feet of you as if it were bright light, and in
+darkness as if it were dim light. You can't discern color in darkness, only
+shades of gray. | Age: Satarre grow quickly, walking soon after hatching and reaching the development
+of a 15-year-old human by age 6. They maintain the same appearance until about
+50, then begin a rapid decline. Satarre often die violently, but those who live
+longer survive to no more than 65 years of age. | Alignment: Satarre are born with a tendency toward evil akin to that of rapacious dragons,
+and, when raised among other satarre or darakhul, they are usually evil. Those
+raised among other cultures tend toward the norm for those cultures. | Size: Satarre are tall but thin, from 6 to 7 feet tall with peculiar, segmented limbs.
+Your size is Medium. | Languages: You can speak, read, and write Common and one of the following: Abyssal,
+Infernal, or Void Speech. Void Speech is a language of dark gods and ancient
+blasphemies, and the mere sound of its sibilant tones makes many other creatures
+quite uncomfortable. | A Friend to Death: You have resistance to necrotic damage. | Keeper of Secrets: You have proficiency in the Arcana skill, and you have advantage on Intelligence
+(Arcana) checks related to the planes and planar travel. In addition, you have
+proficiency in one of the following skills of your choice: History, Insight, and
+Religion. | Carrier of Rot: You can use your action to inflict rot on a creature you can see within 10 feet
+of you. The creature must make a Constitution saving throw. The DC for this
+saving throw equals 8 + your Constitution modifier + your proficiency bonus. A
+creature takes 1d4 necrotic damage on a failed save, and half as much damage on
+a successful one. A creature that fails the saving throw also rots for 1 minute.
+A rotting creature takes 1d4 necrotic damage at the end of each of its turns.
+The target or a creature within 5 feet of it can use an action to excise the rot
+with a successful Wisdom (Medicine) check. The DC for the check equals the rot's
+Constitution saving throw DC. The rot also disappears if the target receives
+magical healing. The damage for the initial action and the rotting increases to
+2d4 at 6th level, 3d4 at 11th level, and 4d4 at 16th level. After you use your
+Carrier of Rot trait, you can't use it again until you complete a short or long
+rest."
