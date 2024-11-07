@@ -2,8 +2,9 @@
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 
+	
 	/**
-	 * @type {{ Name: any; Level: any; Race: any; Class: any; Background: any; RolledHitpoints: any; Strength: any; Dexterity: any; Constitution: any; Intelligence: any; Wisdom: any; Charisma: any; Traits: any; ClassDesc: string; Benefits: any; ProficientSkills: any; chosenFeats: any; chosenSpells: any; }}
+	 * @type {{ Name: any; Level: any; Race: any; Class: any; Background: any; RolledHitpoints: any; Strength: any; Dexterity: any; Constitution: any; Intelligence: any; Wisdom: any; Charisma: any; Benefits: any; ProficientSkills: any; chosenFeats: any; chosenSpells: any; Traits: any; ClassDesc: string; SubRace: any; SubTraits: any; Archetype: any; ArchetypeDesc: string; }}
 	 */
 	let localCharacter;
 	/**
@@ -16,6 +17,8 @@
 	let showBackground = false;
 	let showRace = false;
 	let showClass = false;
+	let showArchetype = false;
+	let showSubrace = false;
 
 	function getCharacterInfo() {
 		const savedCharacter = localStorage.getItem('character' + slot);
@@ -32,6 +35,8 @@
 	const getClassDescription = (/** @type {string} */ desc) => marked(desc);
 	const getRaceDescription = (/** @type {string} */ desc) => marked(desc);
 	const getBackgroundDesc = (/** @type {string} */ desc) => marked(desc);
+	const getSubRaceDescription = (/** @type {string} */ desc) => marked(desc);
+	const getArchetypeDescription = (/** @type {string} */ desc) => marked(desc);
 </script>
 
 {#if localCharacter}
@@ -53,43 +58,7 @@
 			<h2>Charisma: {localCharacter.Charisma}</h2>
 		</div>
 		<div class="buttons">
-			<div class="charOption">
-				<button
-					on:click={() => (showRace = !showRace)}
-					style="margin:0%; width: 100%;
-		height: 100%;
-		font-size: 2vh;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		background-color: var(--button-bg);">{localCharacter.Race}</button
-				>
-				{#if showRace}
-					<div class="content">
-						<h3>Description:</h3>
-
-						{#each localCharacter.Traits as trait}
-							<p><strong>{trait.name}</strong></p>
-							<p>{@html getRaceDescription(trait.desc)}</p>
-						{/each}
-					</div>
-				{/if}
-			</div>
-			<div class="charOption">
-				<button
-					on:click={() => (showClass = !showClass)}
-					style="margin:0%; width: 100%;
-		height: 100%;
-		font-size: 2vh;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		background-color: var(--button-bg);">{localCharacter.Class}</button
-				>
-				{#if showClass}
-					<div class="content">
-						<h3>Description:</h3>
-
-						<p>{@html getClassDescription(localCharacter.ClassDesc)}</p>
-					</div>
-				{/if}
-			</div>
+			
 			<div class="charOption">
 				<button
 					on:click={() => (showBackground = !showBackground)}
@@ -163,26 +132,99 @@
 				{/if}
 			</div>
 		</div>
-		<div class="buttons"></div>
+		<div class="buttons">
+			<div class="charOption">
+				<button
+					on:click={() => (showRace = !showRace)}
+					style="margin:0%; width: 100%;
+		height: 100%;
+		font-size: 2vh;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.Race}</button
+				>
+				{#if showRace}
+					<div class="content">
+						<h3>Description:</h3>
+
+						{#each localCharacter.Traits as trait}
+							<p><strong>{trait.name}</strong></p>
+							<p>{@html getRaceDescription(trait.desc)}</p>
+						{/each}
+					</div>
+				{/if}
+			</div>
+			<div class="charOption">
+				<button
+					on:click={() => (showClass = !showClass)}
+					style="margin:0%; width: 100%;
+		height: 100%;
+		font-size: 2vh;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.Class}</button
+				>
+				{#if showClass}
+					<div class="content">
+						<h3>Description:</h3>
+
+						<p>{@html getClassDescription(localCharacter.ClassDesc)}</p>
+					</div>
+				{/if}
+			</div>
+			<div class="charOption">
+				<button
+					on:click={() => (showSubrace = !showSubrace)}
+					style="margin:0%; width: 100%; height: 100%;
+		font-size: 2vh;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.SubRace}</button
+				>
+				{#if showSubrace}
+					<div class="content">
+						<h3>Description:</h3>
+	
+						{#each localCharacter.SubTraits as SubTrait}
+							<p><strong>{SubTrait.name}</strong></p>
+							<p>{@html getSubRaceDescription(SubTrait.desc)}</p>
+						{/each}
+					</div>
+				{/if}
+			</div>
+			<div class="charOption">
+				<button
+					on:click={() => (showArchetype = !showArchetype)}
+					style="margin:0%; width: 100%; height: 100%;
+		font-size: 2vh;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		background-color: var(--button-bg);">{localCharacter.Archetype}</button
+				>
+				{#if showArchetype}
+					<div class="content">
+						<h3>Description:</h3>
+							<p>{@html getArchetypeDescription(localCharacter.ArchetypeDesc)}</p>
+					</div>
+				{/if}
+			</div>
+		</div>
 	</div>
 {/if}
 
 <style>
 	.charOption {
 		height: 10vh;
-		width: 16vw;
+		width: 25vw;
 	}
 
 	.content {
 		overflow-y: auto;
-		height: 30vh;
-		width: 16vw;
+		max-height: 20vh;
+		width: 22.5vw;
+		padding-left: 1vw;
+		padding-right: 1vw;
 	}
 
 	.wrapper {
 		background-color: #d9d9d9;
-		border: var(--button-selected) 5px solid;
-		height: 100vh;
+		height: 100%;
 	}
 
 	.header {
@@ -209,6 +251,7 @@
 		flex-direction: row;
 		justify-content: center;
 		width: 100%;
+		height: 30vh;
 	}
 	li {
 		font-size: 1.5vh;

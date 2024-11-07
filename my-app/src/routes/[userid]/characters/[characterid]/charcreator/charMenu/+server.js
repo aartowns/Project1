@@ -26,4 +26,5 @@ async function grabBackgrounds() {
     } catch (error) {
         console.error('Error fetching backgrounds:', error);
     }
-};
+}
+

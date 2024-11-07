@@ -29,7 +29,11 @@
 		Intelligence: 1,
 		Charisma: 1,
 		chosenFeats: [],
-		chosenSpells: []
+		chosenSpells: [],
+		Archetype: 'Path of the Juggernaut',
+		ArchetypeDesc: [],
+		SubRace: 'High Elf',
+		SubTraits: []
 	});
 	character.subscribe((val) => {
 		console.log(val);
