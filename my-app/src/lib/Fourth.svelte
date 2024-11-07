@@ -35,111 +35,111 @@
 
 <div class="wrapper">
 	<div class="skill">
-		<label class="label" for="athletics"
+		<label class="label" for="Athletics"
 			>Athletics
-			<input on:input={(e) => onSkillChanged(e)} id="athletics" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Athletics" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="acrobatics"
+		<label class="label" for="Acrobatics"
 			>Acrobatics
-			<input on:input={(e) => onSkillChanged(e)} id="acrobatics" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Acrobatics" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="sleight-of-hand"
+		<label class="label" for="Sleight of Hand"
 			>Sleight of Hand
-			<input on:input={(e) => onSkillChanged(e)} id="sleight-of-hand" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Sleight of Hand" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="stealth"
+		<label class="label" for="Stealth"
 			>Stealth
-			<input on:input={(e) => onSkillChanged(e)} id="stealth" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Stealth" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="arcana"
+		<label class="label" for="Arcana"
 			>Arcana
-			<input on:input={(e) => onSkillChanged(e)} id="arcana" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Arcana" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="history"
+		<label class="label" for="History"
 			>History
-			<input on:input={(e) => onSkillChanged(e)} id="history" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="History" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="investigation"
+		<label class="label" for="Investigation"
 			>Investigation
-			<input on:input={(e) => onSkillChanged(e)} id="investigation" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Investigation" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="nature"
+		<label class="label" for="Nature"
 			>Nature
-			<input on:input={(e) => onSkillChanged(e)} id="nature" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Nature" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="religion"
+		<label class="label" for="Religion"
 			>Religion
-			<input on:input={(e) => onSkillChanged(e)} id="religion" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Religion" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="animal-handling"
+		<label class="label" for="Animal Handling"
 			>Animal Handling
-			<input on:input={(e) => onSkillChanged(e)} id="animal-handling" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Animal Handling" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="insight"
+		<label class="label" for="Insight"
 			>Insight
-			<input on:input={(e) => onSkillChanged(e)} id="insight" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Insight" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="medicine"
+		<label class="label" for="Medicine"
 			>Medicine
-			<input on:input={(e) => onSkillChanged(e)} id="medicine" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Medicine" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="perception"
+		<label class="label" for="Perception"
 			>Perception
-			<input on:input={(e) => onSkillChanged(e)} id="perception" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Perception" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="survival"
+		<label class="label" for="Survival"
 			>Survival
-			<input on:input={(e) => onSkillChanged(e)} id="survival" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Survival" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="deception"
+		<label class="label" for="Deception"
 			>Deception
-			<input on:input={(e) => onSkillChanged(e)} id="deception" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Deception" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="intimidation"
+		<label class="label" for="Intimidation"
 			>Intimidation
-			<input on:input={(e) => onSkillChanged(e)} id="intimidation" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Intimidation" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="performance"
+		<label class="label" for="Performance"
 			>Performance
-			<input on:input={(e) => onSkillChanged(e)} id="performance" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Performance" type="checkbox" />
 		</label>
 	</div>
 	<div class="skill">
-		<label class="label" for="persuasion"
+		<label class="label" for="Persuasion"
 			>Persuasion
-			<input on:input={(e) => onSkillChanged(e)} id="persuasion" type="checkbox" />
+			<input on:input={(e) => onSkillChanged(e)} id="Persuasion" type="checkbox" />
 		</label>
 	</div>
 </div>
@@ -153,7 +153,7 @@
 		height: 100%;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
+		gap: .5vh;
 		margin: 0;
 		flex-direction: row;
 	}
@@ -163,17 +163,14 @@
 		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 40vw;
+		height: 5vh;
 		background-color: var(--button-bg);
-		margin: 60px;
-		padding: 0;
 		border: solid black 0.5px;
+		align-content: flex-start;
 	}
 
 	.label {
-		font-size: 20px;
+		font-size: 2vh;
 	}
 </style>

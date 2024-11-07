@@ -29,7 +29,11 @@
 		Intelligence: 1,
 		Charisma: 1,
 		chosenFeats: [],
-		chosenSpells: []
+		chosenSpells: [],
+		Archetype: 'Path of the Juggernaut',
+		ArchetypeDesc: [],
+		SubRace: 'High Elf',
+		SubTraits: []
 	});
 	character.subscribe((val) => {
 		console.log(val);
@@ -37,7 +41,7 @@
 </script>
 
 <div style="display:flex; justify-content:center; flex-direction: column;">
-	<div style="display:flex; justify-content:center; flex-direction: row;">
+	<div class="button-container">
 		<button
 			class={state == 'first' ? 'selected' : ''}
 			on:click={() => {
@@ -126,10 +130,23 @@
 </div>
 
 <style>
+	.button-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100vw;
+		height: 20vh;
+		flex-wrap: wrap;
+		align-content: flex-start;
+	}
 	button {
-		width: 20%;
-		height: 4em;
-		font-size: 16pt;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		width: 25vw;
+		height: 6vh;
+		font-size: 1.5vh;
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		background-color: var(--button-bg);
 	}

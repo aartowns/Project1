@@ -1,15 +1,15 @@
 
 <header>
     <div class="header">
-        <a class="pageLink" href="/">Home</a>
+        <a class="pageLink" href="/"><strong>Home</strong></a>
     </div>
 </header>
 <div class="menu">
     <div class="menuOption">
-        <a class="pageLink" href="/[userid]/characters/[characterid]/charcreator/charMenu">Character Creator</a>
+        <a class="pageLink" href="/[userid]/characters/[characterid]/charcreator/charMenu" style="font-size: 4vh;"><strong>Character Creator</strong></a>
     </div>
     <div class="menuOption">
-        <a class="pageLink" href="/[userid]/characters/[characterid]/charList">Characters</a>
+        <a class="pageLink" href="/[userid]/characters/[characterid]/charList" style="font-size: 4vh;"><strong>Characters</strong></a>
     </div>
 </div>
 
@@ -20,21 +20,20 @@
 }
     .header {
         background-color: var(--button-selected);
-        width: 100%;
-        height: 150px;
+        width: 100vw;
+        height: 15vh;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0;
         margin: 0;
-        font-size: 60px;
-        border: solid black 1px;
-        border-bottom: 0.25px;
+        font-size: 6vh;
+        border: solid black .25px;
     }
 
     .menu {
-        width: 100%;
-        height: 100px;
+        width: 100vw;
+        height: 10vh;
         display: flex;
         background-color: var(--button-bg);
         justify-content: center;
@@ -43,13 +42,13 @@
 
     .menuOption {
         display: flex;
-        border: solid black 0.5px;
+        border: solid black 0.25px;
         justify-content: center;
         align-items: center;
+        text-align: center;
         height: 100%;
-        width: 50%;
-        font-size: 40px;
-        border-bottom: 0.25px;
+        width: 50vw;
+        font-size: 4vw;
     }
     .pageLink {
         text-decoration: none;

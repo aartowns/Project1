@@ -15,12 +15,12 @@
 
 <div class="wrapper">
 	<div class="createOptions">
-		<label class="labelPg1" for="Level">Level:</label>
+		<label class="labelPg1" for="Level" style="font-size: 2vh;">Level:</label>
 		<select
 			bind:value={$character.Level}
 			name="Level"
 			id="Level"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh;"
 		>
 			<option class="option" value={1}>1</option>
 			<option class="option" value={2}>2</option>
@@ -45,24 +45,24 @@
 		</select>
 	</div>
 	
-	<div class="createOptions" style="padding-left: 10px; padding-right: 5px;">
-		<label class="labelPg1" for="hitpoints" style="padding-right: 5px;">Rolled Hitpoints:</label>
+	<div class="createOptions">
+		<label class="labelPg1" for="hitpoints" style="padding-right: 5px; font-size: 2vh;">Rolled Hitpoints:</label>
 		<input
 			bind:value={$character.RolledHitpoints}
 			type="number"
 			id="hitpoints"
 			name="hitpoints"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 15vw;"
 		/>
 	</div>
 	<div class="createOptions">
-		<label class="labelPg1" for="name" style="padding-right: 5px;">Name:</label>
+		<label class="labelPg1" for="name" style="padding-right: 5px; font-size: 2vh;">Name:</label>
 		<input
 			bind:value={$character.Name}
 			type="text"
 			id="name"
 			name="name"
-			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;"
+			style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2vh; width: 15vw;"
 		/>
 	</div>
 </div>
@@ -77,7 +77,6 @@
 		height: 100%;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
 		margin: 0;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -88,12 +87,10 @@
 		flex: wrap;
 		justify-content: center;
 		align-items: center;
-		min-width: 20em;
-		min-height: 5em;
-		max-width: 20em;
-		max-height: 5em;
+		width: 65vw;
+		height: 10vh;
 		background-color: var(--button-bg);
-		margin: 60px;
+		margin: 2vh;
 		padding: 0;
 		border: solid black 0.5px;
 	}

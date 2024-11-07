@@ -88,12 +88,12 @@
 
 <div style="display: flex; flex-direction: row; text-align: center;">
 	<div class="container">
-		<div class="scrollable-container" style="margin-top: 20px">
+		<div class="scrollable-container" style="margin-top: 2.5vh;">
 			<div
 				style="background-color: var(--button-bg); display: flex; flex-direction: column; justify-content: center; "
 			>
 				<h1>Selected Feats</h1>
-				<div style="text-align: center; justify-content: center; margin: 10px;">
+				<div style="text-align: center; justify-content: center; margin: 1vh; padding-bottom: 1vh;">
 					<ul bind:this={selectedFeats} id="selected">
 						{#each $featsArray as feat}
 							{#if feat.isSelected}
@@ -117,7 +117,7 @@
 	</div>
 	<div class="container">
 		<div class="scrollable-container">
-			<div style="justify-content: center; background-color: var(--button-bg); align-items:center ">
+			<div style="justify-content: center; background-color: var(--button-bg); align-items:center; ">
 				<h1>All Feats</h1>
 				<input
 					bind:this={search}
@@ -125,8 +125,9 @@
 					placeholder="Search..."
 					name="feat"
 					id="searchField"
+					style="width: 15vh"
 				/>
-				<div style="text-align: center; justify-content: center; margin: 10px;">
+				<div style="text-align: center; justify-content: center; margin: 1vh; padding-bottom: 1vh;">
 					<ul bind:this={allFeats} id="resultList">
 						{#each $featsArray as feat}
 							{#if !feat.isSelected && feat.isShown}
@@ -151,16 +152,22 @@
 </div>
 
 <style>
+	h1 {
+		font-size: 4vh;
+	}
+	li {
+		font-size: 2vh;
+	}
 	.scrollable-container {
-		height: 900px;
+		height: 50vh;
 		overflow-y: auto;
-		padding: 10px;
+		padding: 1vh;
 		box-sizing: border-box;
 	}
 
 	.container {
-		width: 50%;
-		padding: 10px;
+		width: 50vw;
+		padding: 1vh;
 		box-sizing: border-box;
 	}
 
